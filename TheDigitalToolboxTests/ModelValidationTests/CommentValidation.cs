@@ -6,5 +6,6 @@ namespace TheDigitalToolboxTests.ModelValidationTests
 {
     class CommentValidation
     {
+        //TODO create unit tests for comment class
     }
 }

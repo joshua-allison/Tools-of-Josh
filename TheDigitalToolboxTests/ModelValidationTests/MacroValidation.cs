@@ -6,5 +6,6 @@ namespace TheDigitalToolboxTests.ModelValidationTests
 {
     class MacroValidation
     {
+        //TODO create unit tests for macro class
     }
 }
