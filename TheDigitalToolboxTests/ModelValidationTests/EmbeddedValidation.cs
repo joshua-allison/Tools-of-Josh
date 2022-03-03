@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TheDigitalToolboxTests
 {
-    public class EmbeddedTests
+    public class EmbeddedValidation
     {
         #region TestSetup
         //quick set-up function

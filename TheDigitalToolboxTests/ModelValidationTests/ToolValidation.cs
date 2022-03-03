@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TheDigitalToolboxTests
 {
-    public class ToolTests
+    public class ToolValidation
     {
         #region TestSetup
         //quick set-up function
