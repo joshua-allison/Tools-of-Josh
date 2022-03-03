@@ -1,9 +1,9 @@
 using System;
-using Xunit;
-using TheDigitalToolbox.Models;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using TheDigitalToolbox.Models;
+using Xunit;
 
 namespace TheDigitalToolboxTests
 {
@@ -43,7 +43,7 @@ namespace TheDigitalToolboxTests
             testTool.Title = "T";
 
             //assert (Shorter than the minimum)
-            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("Title") && v.ErrorMessage.Contains("String length"));
+            TestHelpers.TestModelValidation(testTool, "Title", "String length");
         }
 
         [Fact]
@@ -56,21 +56,20 @@ namespace TheDigitalToolboxTests
             testTool.Title = "0123456789-0123456789-0123456789-0123456789-0123456789-0123456789";
 
             //assert (Greater than the maximum)
-            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("Title") && v.ErrorMessage.Contains("String length"));
+            TestHelpers.TestModelValidation(testTool, "Title", "String length");
         }
 
         [Fact]
         public void TitleMissing()
         {
-            //arrange & act (omit title)
-            Tool testTool = new Tool
-            {
-                Description = "Test: This is an appropriate description. It must have sufficient length.",
-                ShareURL = "https://www.ledr.com/colours/green.htm" //test URL
-            };
+            //arrange
+            Tool testTool = CreateTestTool();
+
+            //act (omit title)
+            testTool.Title = "";
 
             //assert (title required)
-            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("Title") && v.ErrorMessage.Contains("Please enter a title"));
+            TestHelpers.TestModelValidation(testTool, "Title", "required");
         }
         #endregion 
 
@@ -112,7 +111,7 @@ namespace TheDigitalToolboxTests
             };
 
             //assert (title required)
-            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("Description") && v.ErrorMessage.Contains("Please enter a description"));
+            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("Description") && v.ErrorMessage.Contains("required"));
         }
 
         #endregion 
@@ -129,7 +128,7 @@ namespace TheDigitalToolboxTests
             };
 
             //assert (URL required)
-            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("ShareURL") && v.ErrorMessage.Contains("Please enter a 'Share' URL."));
+            Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("ShareURL") && v.ErrorMessage.Contains("required"));
         }
 
         [Fact]

@@ -1,5 +1,3 @@
-using System;
-
 namespace TheDigitalToolbox.Models
 {
     public class ErrorViewModel

@@ -1,6 +1,6 @@
 ﻿namespace TheDigitalToolbox.Models
 {
-    public class HelpfulLink
+    public class Comment
     {
     }
 }
