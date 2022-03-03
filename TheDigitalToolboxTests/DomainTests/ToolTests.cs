@@ -144,9 +144,6 @@ namespace TheDigitalToolboxTests
             //assert 
             Assert.Contains(ValidateModel(testTool), v => v.MemberNames.Contains("ShareURL") && v.ErrorMessage.Contains("Share URL must be a web address"));
         }
-
-
-
         #endregion URLTests
 
     }
