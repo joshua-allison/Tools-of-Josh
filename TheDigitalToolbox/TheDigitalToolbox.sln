@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDigitalToolbox", "TheDigitalToolbox.csproj", "{DDF95B64-9CC3-46DE-875F-F9FE5FC12AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDigitalToolboxTests", "..\TheDigitalToolboxTests\TheDigitalToolboxTests.csproj", "{65D630A2-D481-48CD-BBB2-8D543274F293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDF95B64-9CC3-46DE-875F-F9FE5FC12AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF95B64-9CC3-46DE-875F-F9FE5FC12AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF95B64-9CC3-46DE-875F-F9FE5FC12AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF95B64-9CC3-46DE-875F-F9FE5FC12AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D630A2-D481-48CD-BBB2-8D543274F293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D630A2-D481-48CD-BBB2-8D543274F293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D630A2-D481-48CD-BBB2-8D543274F293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D630A2-D481-48CD-BBB2-8D543274F293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {796AE560-5B71-4866-96BD-26C487A53C2F}
+	EndGlobalSection
+EndGlobal
