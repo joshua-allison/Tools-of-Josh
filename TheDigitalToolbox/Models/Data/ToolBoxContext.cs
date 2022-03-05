@@ -17,7 +17,7 @@ namespace TheDigitalToolbox.Models
         public DbSet<Macro> Macros { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<Tool> Tools { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) // Seed data
+        protected override void OnModelCreating(ModelBuilder modelBuilder) // Seed data - Ready for initial Migration
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Comment>().HasData(
