@@ -5,9 +5,9 @@ namespace TheDigitalToolbox.Models
 {
     public class Comment
     {
-        public int commentId { get; set; }
-        public User commenter { get; set; }
-        public DateTime date { get; set; }
+        public int CommentId { get; set; }
+        public User Commenter { get; set; }
+        public DateTime Date { get; set; }
 
 
         //Creating code-accessible limits for the string length of the member variable
