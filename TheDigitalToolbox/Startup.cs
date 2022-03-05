@@ -35,6 +35,9 @@ namespace TheDigitalToolbox
                 options.Password.RequiredLength = 9;
             }).AddEntityFrameworkStores<ToolboxContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<ITheDigitalToolBoxDBUnitOfWork, TheDigitalToolBoxDBUnitOfWork>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
