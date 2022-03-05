@@ -26,5 +26,32 @@ namespace TheDigitalToolboxTests
             Assert.Contains(ValidateModel(testModelObject), v => v.MemberNames.Contains(MemberName) && v.ErrorMessage.Contains(ErrorMessage));
             return;
         }
+
+        public static string CreateStringOverMax(StringLength testObjectSL)
+        {
+            // Accept a StringLength object and create a string of characters with a length over the maximum provided. 
+            string result = "";
+            int overMax = testObjectSL.GetMax() + 1;
+            for (int i = 0; i < overMax; i++)
+            {
+                // (it doesn't matter what character we use, what we care about is how many there are.
+                result = result + "x";
+            }
+            return result;
+        }
+
+        public static string CreateStringUnderMin(StringLength testObjectSL)
+        {
+            // Accept a StringLength object and create a string of characters with a length under the minimum provided. 
+            string result = "";
+            int underMin = testObjectSL.GetMin() - 1;
+            if (underMin == 0) return "";
+            for (int i = 0; i < underMin; i++)
+            {
+                // (it doesn't matter what character we use, what we care about is how many there are.
+                result = result + "x";
+            }
+            return result;
+        }
     }
 }

@@ -2,7 +2,7 @@
 using Xunit;
 
 
-namespace TheDigitalToolboxTests
+namespace TheDigitalToolboxTests.ModelValidationTests
 {
     public class EmbeddedValidation
     {

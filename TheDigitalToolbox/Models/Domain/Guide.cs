@@ -7,8 +7,13 @@ namespace TheDigitalToolbox.Models
         // Guides are either articles or videos made to share understanding of a topic, or to assist others in making something.
         public int GuideId { get; set; }
 
+        //Creating code-accessible limits for the string length of the member variable
+        private const int TopicMinLength = 1;
+        private const int TopicMaxLength = 60;
+        public StringLength TopicSL = new StringLength(TopicMinLength, TopicMaxLength);
+        //Creating the member variable itself
         [Required(ErrorMessage = "A(n) {0} is required.")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "String length for the {0} must be between {2} and {1}.")]
+        [StringLength(TopicMaxLength, MinimumLength = TopicMinLength, ErrorMessage = "String length for the {0} must be between {2} and {1}.")]
         public string Topic { get; set; }
     }
 }
