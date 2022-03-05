@@ -1,8 +1,11 @@
+using TheDigitalToolbox.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace TheDigitalToolbox
 {
@@ -19,6 +22,19 @@ namespace TheDigitalToolbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<ToolboxContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ToolBoxContext")));
+
+            services.AddHttpContextAccessor();
+
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
+
+            services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequiredLength = 9;
+            }).AddEntityFrameworkStores<ToolboxContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +55,7 @@ namespace TheDigitalToolbox
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -47,6 +64,8 @@ namespace TheDigitalToolbox
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            
+            ToolboxContext.CreateAdminUser(app.ApplicationServices).Wait(); // calls the create admin user function defined in ToolboxContext
         }
     }
 }
