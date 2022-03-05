@@ -2,11 +2,9 @@
 
 namespace TheDigitalToolbox.Models
 {
-    public class Tool
+    public abstract class Tool
     {
         // There will be many tools in the toolbox of varying uses, structure, and source of synthesis, but all tools will need the following:
-
-        public int ToolId { get; set; }
 
         // Which user uploaded the tool, automatically set by the site (no need for validation)
         public User Uploader { get; set; }
