@@ -6,7 +6,6 @@ namespace TheDigitalToolbox.Models
     {
         public int ProgramId { get; set; }
 
-
         //Creating code-accessible limits for the string length of the member variable
         private const int LanguageMinLength = 1;
         private const int LanguageMaxLength = 60;
