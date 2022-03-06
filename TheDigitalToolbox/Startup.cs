@@ -61,11 +61,19 @@ namespace TheDigitalToolbox
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                // route for Admin area
+                endpoints.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=UserController}/{action=Index}/");
             });
             
             ToolboxContext.CreateAdminUser(app.ApplicationServices).Wait(); // calls the create admin user function defined in ToolboxContext
