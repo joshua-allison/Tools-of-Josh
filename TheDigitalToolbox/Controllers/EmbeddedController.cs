@@ -11,12 +11,12 @@ namespace TheDigitalToolbox.Controllers
     public class EmbeddedController : Controller
     {
         #region Controller Creation
-        private IHttpContextAccessor http { get; set; }
+        private IHttpContextAccessor accessor { get; set; }
         private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
-        public EmbeddedController(ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor ctx)
+        public EmbeddedController(ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
         {
             data = rep;
-            http = ctx;
+            accessor = http;
         }
         #endregion Controller Creation
         #region Index & Details
@@ -54,9 +54,8 @@ namespace TheDigitalToolbox.Controllers
                 data.Embeddeds.Save();
 
 
-                // "Error: Session Not Configured"
-                //string verb = (operation == "Create") ? "created" : "updated";
-                //TempData["msg"] = $"{e.Title} {verb}";
+                string verb = (operation == "Create") ? "created" : "updated";
+                //TempData["msg"] = $"{e.Title} {verb}";    // "Error: Session Not Configured"
 
                 return GoToEmbeds();
 
@@ -85,10 +84,15 @@ namespace TheDigitalToolbox.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Remove(Embedded e)  // POST: EmbeddedController/Remove/5
+        public ActionResult Remove(Embedded e)                          // POST: EmbeddedController/Remove/5
         {
+            e = data.Embeddeds.Get(e.EmbeddedId);   // for notification message 
+
             data.Embeddeds.Delete(e);
             data.Embeddeds.Save();
+
+            //TempData["msg"] = $"{e.Title} deleted";     // "Error: Session Not Configured"
+
             return GoToEmbeds();
         }
         #endregion Remove
