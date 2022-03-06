@@ -37,7 +37,7 @@ namespace TheDigitalToolbox.Models
                     Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
                     ShareURL = "https://www.desmos.com/calculator/t2beidgdke",
                     EmbeddedId = 1,
-                    EmbedString = "< iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></ iframe >"
+                    EmbedString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>"
                 }
             );
             modelBuilder.Entity<Guide>().HasData(

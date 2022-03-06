@@ -11,7 +11,7 @@ namespace TheDigitalToolbox.Controllers
         //This is a place where I can store the headers of my controllers.
         private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
         public ControllerHelpers(ITheDigitalToolBoxDBUnitOfWork unit) => data = unit;
-        public void addDBListsToViewBag()
+        public void LoadViewBag()
         {
             //Theres a lot of entities related to equipment that need to be added to the ViewBag, so it makes sense to just write a function that just loads them all up at once, so I don't have to keep writing it out.
             ViewBag.Comments = data.Comments.List(new QueryOptions<Comment> { OrderBy = c => c.CommentId });

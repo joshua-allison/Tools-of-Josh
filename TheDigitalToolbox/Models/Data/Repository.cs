@@ -41,7 +41,7 @@ namespace TheDigitalToolbox.Models
                 query = query.Where(options.Where);
             return query.FirstOrDefault();
         }
-
+        // TODO Fix Async functions (Either insert or save is not working, not sure which.)
         public virtual void Insert(T entity) => dbset.Add(entity);
         public virtual void InsertAsync(T entity) => dbset.AddAsync(entity);
         public virtual void Update(T entity) => dbset.Update(entity);
