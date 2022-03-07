@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TheDigitalToolbox.Models;
 
@@ -34,13 +33,15 @@ namespace TheDigitalToolbox.Controllers
         }
         #endregion Index & Details
         #region Create
+        [Authorize]
         public ActionResult Create()                                                // GET: EmbeddedController/Create
         {
             LoadViewBag("Create");
             return View();
         }
-        
+
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Embedded e)          // POST: EmbeddedController/Create
         {
@@ -68,6 +69,7 @@ namespace TheDigitalToolbox.Controllers
         }
         #endregion Create
         #region Update
+        [Authorize]
         public ActionResult Update(int id)                                      // GET: EmbeddedController/Update/5
         {
             LoadViewBag("Update");
@@ -76,6 +78,7 @@ namespace TheDigitalToolbox.Controllers
         }
         #endregion Update
         #region Remove
+        [Authorize(Roles = "Admin")]
         public ActionResult Remove(int id)                                      // GET: EmbeddedController/Remove/5
         {
             var e = GetEmbedded(id);
@@ -83,6 +86,7 @@ namespace TheDigitalToolbox.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Remove(Embedded e)                          // POST: EmbeddedController/Remove/5
         {
@@ -99,9 +103,9 @@ namespace TheDigitalToolbox.Controllers
         #region Private Helper Methods
         public IEnumerable<Embedded> LoadViewBag(string operation)
         {
+            ViewBag.Users = data.Users.List(new QueryOptions<User> { OrderBy = u => u.Lastname });
             ViewBag.Comments = data.Comments.List(new QueryOptions<Comment> { OrderBy = c => c.CommentId });
             ViewBag.Embeddeds = data.Embeddeds.List(new QueryOptions<Embedded> { OrderBy = e => e.EmbeddedId });
-            ViewBag.Users = data.Users.List(new QueryOptions<User> { OrderBy = u => u.Lastname });
 
             ViewBag.Operation = operation;
 

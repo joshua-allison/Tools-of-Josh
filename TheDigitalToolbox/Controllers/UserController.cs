@@ -7,7 +7,7 @@ using TheDigitalToolbox.Models;
 
 namespace TheDigitalToolbox.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private UserManager<User> userManager;
