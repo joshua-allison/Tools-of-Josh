@@ -46,9 +46,8 @@ namespace TheDigitalToolbox.Models
         [Required(ErrorMessage = "A(n) {0} is required.")]
         [Url(ErrorMessage = "Share URL must be a web address")]
         public string ShareURL { get; set; }
-
         public List<Comment> Comments { get; set; }
 
-
+        public string Slug => Title?.Replace(' ', '-').ToLower();
     }
 }

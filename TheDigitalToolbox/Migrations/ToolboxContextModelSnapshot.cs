@@ -15,8 +15,8 @@ namespace TheDigitalToolbox.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -29,18 +29,18 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -180,8 +180,8 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("CommentId");
 
@@ -217,13 +217,13 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EmbedString")
                         .IsRequired()
@@ -235,8 +235,8 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
@@ -268,13 +268,13 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ShareURL")
                         .IsRequired()
@@ -282,13 +282,13 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Topic")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
@@ -304,8 +304,7 @@ namespace TheDigitalToolbox.Migrations
                         {
                             GuideId = 11,
                             Creator = "Josh Allison",
-                            Description = @"Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. 
- Enter Obs Studio with Obs Virtual Camera and VB Virtual Audio.",
+                            Description = "Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. \n Enter Obs Studio with Obs Virtual Camera and VB Virtual Audio.",
                             ShareURL = "https://docs.google.com/document/d/1DPv0Clvu-Aw7UjwIzMMyUkw8t6_L7jkNB5fyCmj5N_8/edit?usp=sharing",
                             Title = "Creating a Virtual Camera/Mic in Obs Studio",
                             Topic = "Virtual Camera / Virtual Audio"
@@ -321,13 +320,13 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ShareURL")
                         .IsRequired()
@@ -335,13 +334,13 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
@@ -373,18 +372,18 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("App")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ShareURL")
                         .IsRequired()
@@ -392,8 +391,8 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
@@ -425,18 +424,18 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Language")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("ShareURL")
                         .IsRequired()
@@ -444,8 +443,8 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
@@ -481,8 +480,8 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -500,12 +499,12 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -523,17 +522,17 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
@@ -615,6 +614,8 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.Program", null)
                         .WithMany("Comments")
                         .HasForeignKey("ProgramId");
+
+                    b.Navigation("Commenter");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.Embedded", b =>
@@ -622,6 +623,8 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.Guide", b =>
@@ -629,6 +632,8 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.HelpfulLink", b =>
@@ -636,6 +641,8 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.Macro", b =>
@@ -643,6 +650,8 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.Program", b =>
@@ -650,6 +659,33 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Embedded", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Guide", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.HelpfulLink", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Macro", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Program", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,5 +20,33 @@ namespace TheDigitalToolbox
         *   TODO 41 Optimize Site
         *   TODO 42 Fully Async Site
         */
+
+        /* Changes to Scaffolding: (Using Embeddeds as guinea pig)
+         *  The following changes must be added to all domain models (excluding embeddeds)
+         *      
+         *      Update Create view:
+         *          -   Delete H4
+         *          -   Update H1 from "Create" to "<tool type> - Create"
+         *      
+         *      Update Index view: 
+         *          -   Add slugs for the following actions:
+         *              -   edit
+         *              -   details
+         *              -   delete 
+         *          -   Delete all fields, excluding Title & Description
+         *  
+         *      Update Details view:
+         *         -    Add slug to edit action
+         *         -    Change header from "Details" to "@Model.Title - Details"
+         *         -    Delete div>H4
+         *      
+         *      Update Edit view:
+         *         -    Delete H4
+         *         -    Change H1 from "Edit" to "@Model.Title - Edit"
+         *         
+         *      Update Delete View
+         *          -   Update H3 from "this?" to ""@Model.Title"?"
+         *          -   Delete div>H4
+         */
     }
 }

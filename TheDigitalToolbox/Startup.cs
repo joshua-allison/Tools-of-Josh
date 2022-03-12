@@ -37,6 +37,13 @@ namespace TheDigitalToolbox
 
             services.AddTransient<ITheDigitalToolBoxDBUnitOfWork, TheDigitalToolBoxDBUnitOfWork>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
+            // make URLS lowercase and end with a trailing slash
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+                options.AppendTrailingSlash = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,7 +73,7 @@ namespace TheDigitalToolbox
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
 
                 // route for Admin area
                 endpoints.MapAreaControllerRoute(
