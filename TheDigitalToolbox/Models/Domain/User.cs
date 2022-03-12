@@ -10,5 +10,6 @@ namespace TheDigitalToolbox.Models
         public string Lastname { get; set; }
         [NotMapped]
         public IList<string> RoleNames { get; set; }
+
     }
 }

@@ -10,8 +10,8 @@ using TheDigitalToolbox.Models;
 namespace TheDigitalToolbox.Migrations
 {
     [DbContext(typeof(ToolboxContext))]
-    [Migration("20220306194025_Reseed")]
-    partial class Reseed
+    [Migration("20220311210510_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,21 @@ namespace TheDigitalToolbox.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EmbeddedId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GuideId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HelpfulLinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MacroId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProgramId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(300)")
@@ -174,13 +189,23 @@ namespace TheDigitalToolbox.Migrations
 
                     b.HasIndex("CommenterId");
 
+                    b.HasIndex("EmbeddedId");
+
+                    b.HasIndex("GuideId");
+
+                    b.HasIndex("HelpfulLinkId");
+
+                    b.HasIndex("MacroId");
+
+                    b.HasIndex("ProgramId");
+
                     b.ToTable("Comments");
 
                     b.HasData(
                         new
                         {
                             CommentId = 1,
-                            Date = new DateTime(2022, 3, 6, 11, 40, 24, 561, DateTimeKind.Local).AddTicks(8488),
+                            Date = new DateTime(2022, 3, 11, 13, 5, 9, 595, DateTimeKind.Local).AddTicks(569),
                             Text = "Seeded Example Text."
                         });
                 });
@@ -572,6 +597,26 @@ namespace TheDigitalToolbox.Migrations
                     b.HasOne("TheDigitalToolbox.Models.User", "Commenter")
                         .WithMany()
                         .HasForeignKey("CommenterId");
+
+                    b.HasOne("TheDigitalToolbox.Models.Embedded", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("EmbeddedId");
+
+                    b.HasOne("TheDigitalToolbox.Models.Guide", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("GuideId");
+
+                    b.HasOne("TheDigitalToolbox.Models.HelpfulLink", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("HelpfulLinkId");
+
+                    b.HasOne("TheDigitalToolbox.Models.Macro", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("MacroId");
+
+                    b.HasOne("TheDigitalToolbox.Models.Program", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ProgramId");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.Embedded", b =>

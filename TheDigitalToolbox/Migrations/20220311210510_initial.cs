@@ -155,27 +155,6 @@ namespace TheDigitalToolbox.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CommenterId = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Text = table.Column<string>(maxLength: 300, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
-                    table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_CommenterId",
-                        column: x => x.CommenterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Embeds",
                 columns: table => new
                 {
@@ -295,15 +274,71 @@ namespace TheDigitalToolbox.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CommenterId = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Text = table.Column<string>(maxLength: 300, nullable: false),
+                    EmbeddedId = table.Column<int>(nullable: true),
+                    GuideId = table.Column<int>(nullable: true),
+                    HelpfulLinkId = table.Column<int>(nullable: true),
+                    MacroId = table.Column<int>(nullable: true),
+                    ProgramId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_CommenterId",
+                        column: x => x.CommenterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Embeds_EmbeddedId",
+                        column: x => x.EmbeddedId,
+                        principalTable: "Embeds",
+                        principalColumn: "EmbeddedId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Guides_GuideId",
+                        column: x => x.GuideId,
+                        principalTable: "Guides",
+                        principalColumn: "GuideId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_HelpfulLinks_HelpfulLinkId",
+                        column: x => x.HelpfulLinkId,
+                        principalTable: "HelpfulLinks",
+                        principalColumn: "HelpfulLinkId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Macros_MacroId",
+                        column: x => x.MacroId,
+                        principalTable: "Macros",
+                        principalColumn: "MacroId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Programs_ProgramId",
+                        column: x => x.ProgramId,
+                        principalTable: "Programs",
+                        principalColumn: "ProgramId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "CommentId", "CommenterId", "Date", "Text" },
-                values: new object[] { 1, null, new DateTime(2022, 3, 5, 13, 16, 17, 176, DateTimeKind.Local).AddTicks(4826), "Seeded Example Text." });
+                columns: new[] { "CommentId", "CommenterId", "Date", "EmbeddedId", "GuideId", "HelpfulLinkId", "MacroId", "ProgramId", "Text" },
+                values: new object[] { 1, null, new DateTime(2022, 3, 11, 13, 5, 9, 595, DateTimeKind.Local).AddTicks(569), null, null, null, null, null, "Seeded Example Text." });
 
             migrationBuilder.InsertData(
                 table: "Embeds",
                 columns: new[] { "EmbeddedId", "Creator", "Description", "EmbedString", "ShareURL", "Title", "UploaderId" },
-                values: new object[] { 1, "Josh Allison", "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.", "< iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></ iframe >", "https://www.desmos.com/calculator/t2beidgdke", "Activity Time Proportions", null });
+                values: new object[] { 1, "Josh Allison", "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.", "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>", "https://www.desmos.com/calculator/t2beidgdke", "Activity Time Proportions", null });
 
             migrationBuilder.InsertData(
                 table: "Guides",
@@ -371,6 +406,31 @@ namespace TheDigitalToolbox.Migrations
                 column: "CommenterId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_EmbeddedId",
+                table: "Comments",
+                column: "EmbeddedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_GuideId",
+                table: "Comments",
+                column: "GuideId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_HelpfulLinkId",
+                table: "Comments",
+                column: "HelpfulLinkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_MacroId",
+                table: "Comments",
+                column: "MacroId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ProgramId",
+                table: "Comments",
+                column: "ProgramId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Embeds_UploaderId",
                 table: "Embeds",
                 column: "UploaderId");
@@ -417,6 +477,9 @@ namespace TheDigitalToolbox.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
                 name: "Embeds");
 
             migrationBuilder.DropTable(
@@ -430,9 +493,6 @@ namespace TheDigitalToolbox.Migrations
 
             migrationBuilder.DropTable(
                 name: "Programs");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

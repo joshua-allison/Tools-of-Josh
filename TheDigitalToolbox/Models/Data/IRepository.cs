@@ -8,6 +8,7 @@ namespace TheDigitalToolbox.Models
         IEnumerable<T> List(QueryOptions<T> options);
 
         T Get(int id);
+        T Get(string id);
         ValueTask<T> GetAsync(int id);
         T Get(QueryOptions<T> options);
 

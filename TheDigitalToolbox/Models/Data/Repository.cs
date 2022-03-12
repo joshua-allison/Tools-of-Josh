@@ -29,6 +29,7 @@ namespace TheDigitalToolbox.Models
             return query.ToList();
         }
         public virtual T Get(int id) => dbset.Find(id);
+        public virtual T Get(string id) => dbset.Find(id);
         public virtual async ValueTask<T> GetAsync(int id) => await dbset.FindAsync(id);
         public virtual T Get(QueryOptions<T> options)
         {

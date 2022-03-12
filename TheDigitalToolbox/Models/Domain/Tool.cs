@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TheDigitalToolbox.Models
 {
@@ -7,6 +9,7 @@ namespace TheDigitalToolbox.Models
         // There will be many tools in the toolbox of varying uses, structure, and source of synthesis, but all tools will need the following:
 
         // Which user uploaded the tool, automatically set by the site (no need for validation)
+        //TODO 00 Find a way to save the username to the uploaded tool.
         public User Uploader { get; set; }
 
         //The people(s) or organization credited for the creation of the tool, specifically in reference to its top-level functionality
@@ -43,5 +46,9 @@ namespace TheDigitalToolbox.Models
         [Required(ErrorMessage = "A(n) {0} is required.")]
         [Url(ErrorMessage = "Share URL must be a web address")]
         public string ShareURL { get; set; }
+
+        public List<Comment> Comments { get; set; }
+
+
     }
 }

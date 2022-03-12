@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TheDigitalToolbox.Models;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace TheDigitalToolbox.Controllers
 {
@@ -49,7 +51,10 @@ namespace TheDigitalToolbox.Controllers
             if (ModelState.IsValid)
             {
                 if (e.EmbeddedId == 0)
+                {
+                    e.Uploader = data.Users.Get(User.Identity.GetUserId());
                     data.Embeddeds.Insert(e);
+                }
                 else
                     data.Embeddeds.Update(e);
                 data.Embeddeds.Save();
@@ -103,7 +108,7 @@ namespace TheDigitalToolbox.Controllers
         #region Private Helper Methods
         public IEnumerable<Embedded> LoadViewBag(string operation)
         {
-            ViewBag.Users = data.Users.List(new QueryOptions<User> { OrderBy = u => u.Lastname });
+            ViewBag.Users = data.Users.List(new QueryOptions<User> { OrderBy = u => u.UserName });
             ViewBag.Comments = data.Comments.List(new QueryOptions<Comment> { OrderBy = c => c.CommentId });
             ViewBag.Embeddeds = data.Embeddeds.List(new QueryOptions<Embedded> { OrderBy = e => e.EmbeddedId });
 
