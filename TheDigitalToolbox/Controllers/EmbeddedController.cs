@@ -30,7 +30,9 @@ namespace TheDigitalToolbox.Controllers
         public async Task<ActionResult> Details(int id)                     // GET: EmbeddedController/Details/5
         {
             ViewBag.Action = "Details";
+            ViewBag.Users = data.Users.List(new QueryOptions<User> { OrderBy = u => u.UserName });
             var embedded = await data.Embeddeds.GetAsync(id);
+
             return View(embedded);
         }
         #endregion Index & Details

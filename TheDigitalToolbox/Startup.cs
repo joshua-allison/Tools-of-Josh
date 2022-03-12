@@ -27,8 +27,7 @@ namespace TheDigitalToolbox
 
             services.AddHttpContextAccessor();
 
-            services.AddMvc()
-                .AddSessionStateTempDataProvider();
+            services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
 
             services.AddIdentity<User, IdentityRole>(options => {
