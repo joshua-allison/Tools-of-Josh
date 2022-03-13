@@ -5,7 +5,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en" class="bg-dark text-light">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,95 +15,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> @*icons*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> @*icons*@
 </head>
-<body class="bg-dark text-light">
-    <header class="bg-dark text-light">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark text-light border-bottom box-shadow mb-3">
+<body data-dark-mode>
+    <header>
+        <nav data-dark-mode class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 @*Home*@
-                <a class="navbar-brand text-light" asp-controller="Home" asp-action="Index"><span class="h1">The Digital Toolbox</span></a>
+                <a data-nav-brand asp-controller="Home" asp-action="Index"><span data-nav-brand-span>The Digital Toolbox</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex bg-dark text-light navbar-nav">
+                <div data-dark-mode class="navbar-collapse collapse d-sm-inline-flex navbar-nav ">
                     @*Tools*@
-                    <div class="nav-item dropdown">
+                    <div class="nav-item dropdown float-right ml-4 mr-4">
                         <button data-nav-dd-btn>
                             <i class="fa fa-screwdriver-wrench fa-2x"></i><span class="h3 mb-0 p-0 pl-3">Tools</span>
                         </button>
                         @*Tool Options*@
-                        <table class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
-                            <tr class="dropdown-item text-secondary">
+                        <table data-nav-dd-menu>
+                            <tr data-nav-dd-row>
                                 <td><i class="fa fa-file-code fa-xl"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Embedded" asp-action="Index">Embedded</a></td>
+                                <td><a data-nav-dd-txt asp-controller="Embeddeds" asp-action="Index">Embeddeds</a></td>
                                 @*'nav-dd-txt' is a custom attribute targeted by the NavDropdownItemText custom tag helper*@
                             </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-file-code fa-xl"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Embeddeds" asp-action="Index">Embeddeds</a></td>
+                            <tr data-nav-dd-row>
+                                <td><i class="fa fa-comment fa-xl"></i></td>
+                                <td><a data-nav-dd-txt asp-controller="Comments" asp-action="Index">Comments</a></td>
                             </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-comment fa-lg"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Comments" asp-action="Index">Comments</a></td>
+                            <tr data-nav-dd-row>
+                                <td><i class="fa fa-book fa-xl"></i></td>
+                                <td><a data-nav-dd-txt asp-controller="Guides" asp-action="Index">Guides</a></td>
                             </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-book fa-lg"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Guides" asp-action="Index">Guides</a></td>
+                            <tr data-nav-dd-row>
+                                <td><i class="fa fa-link fa-xl"></i></td>
+                                <td><a data-nav-dd-txt asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a></td>
                             </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-link fa-lg"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a></td>
+                            <tr data-nav-dd-row>
+                                <td><i class="fa fa-keyboard fa-xl"></i></td>
+                                <td><a data-nav-dd-txt asp-controller="Macros" asp-action="Index">Macros</a></td>
                             </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-keyboard fa-lg"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Macros" asp-action="Index">Macros</a></td>
-                            </tr>
-                            <tr class="dropdown-item text-secondary">
-                                <td><i class="fa fa-laptop-code fa-lg"></i></td>
-                                <td><a data-nav-dd-txt="" asp-controller="Programs" asp-action="Index">Programs</a></td>
+                            <tr data-nav-dd-row>
+                                <td><i class="fa fa-laptop-code fa-xl"></i></td>
+                                <td><a data-nav-dd-txt asp-controller="Programs" asp-action="Index">Programs</a></td>
                             </tr>
                         </table>
                     </div>
                     @*Account*@
-                    <div class="nav-item dropdown float-right">
-                        <button data-nav-dd-btn="">
+                    <div class="nav-item dropdown float-right ml-4 mr-4">
+                        <button data-nav-dd-btn=>
                             <i class="fa fa-user fa-2x"></i><span class="h3 mb-0 p-0 pl-3">Account</span>
                         </button>
-                            
                         @*Account Options*@
-                        <div class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
-                            @using Microsoft.AspNetCore.Identity
-                            @inject SignInManager<User> signInManager
-                            @if (signInManager.IsSignedIn(User))
-                            {
-                                <span class="p-2 text-center text-nowrap"> Logged in as: @User.Identity.Name </span>
-                                <hr>
-                                <form method="post" asp-action="Logout" asp-controller="Account">
-                                    <input class="dropdown-item text-secondary fa fa-lg pt-3 pb-3" type="submit" value="Logout" />
-                                </form>
-                                <a class="dropdown-item text-secondary @NavViewModel.Active("Admin", current)" asp-action="Index" asp-controller="User">
-                                    <i class="fa fa-user-gear fa-lg">
-                                        Admin
-                                    </i>
-                                </a>
-                            }
-                            else
-                            {
-                                // get current action
-                                var action = ViewContext.RouteData.Values["action"]?.ToString();
-                                // anonymous user - Register link and Log In button
-                                <a class="dropdown-item text-secondary" asp-action="Login" asp-controller="Account">
-                                    <i class="fa fa-lg fa-right-to-bracket">
-                                        Log In
-                                    </i>
-                                </a>
-                                <a class="dropdown-item text-secondary @NavViewModel.Active("Register", action)" asp-action="Register" asp-controller="Account">
-                                    <i class="fa fa-lg fa-user-plus">
-                                        Register
-                                    </i>
-                                </a>
-                            }
-                        </div>
+                        @using Microsoft.AspNetCore.Identity
+                        @inject SignInManager<User> signInManager
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <table data-nav-dd-menu>
+                                <tr><td>
+                                        <span class="h5 p-2 font-weight-bold text-center text-nowrap"> Logged in as: @User.Identity.Name </span>
+                                        <hr style="background-color: #6c757d">
+                                </td></tr>
+                                <tr data-nav-dd-row>
+                                    <td><i class="fa fa-right-from-bracket fa-xl"></i></td>
+                                    <td>
+                                        <form method="post" asp-action="Logout" asp-controller="Account">
+                                            <input data-nav-dd-txt type="submit" value="Logout" />
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr data-nav-dd-row>
+                                    <td><i class="fa fa-user-gear fa-xl"></i></td>
+                                    <td>
+                                        <a data-nav-dd-txt class="@NavViewModel.Active("Admin", current)" asp-action="Index" asp-controller="User">
+                                            Admin
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                        else
+                        {
+                            // get current action
+                            var action = ViewContext.RouteData.Values["action"]?.ToString();
+                            // anonymous user - Register link and Log In button
+                            <table data-nav-dd-menu>
+                                <tr data-nav-dd-row>
+                                    <td><i class="fa fa-xl fa-right-to-bracket"></i></td>
+                                    <td>
+                                        <a data-nav-dd-txt asp-action="Login" asp-controller="Account">
+                                            Log In
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr data-nav-dd-row>
+                                    <td><i class="fa fa-xl fa-user-plus"></i></td>
+                                    <td>
+                                        <a data-nav-dd-txt class="@NavViewModel.Active("Register", action)" asp-action="Register" asp-controller="Account">
+                                            Register
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        }
                     </div>
                 </div>
             </div>

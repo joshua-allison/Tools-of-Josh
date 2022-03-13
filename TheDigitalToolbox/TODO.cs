@@ -32,6 +32,7 @@ namespace TheDigitalToolbox
          *          -   Delete all fields, excluding Title & Description
          *          -   Split actions into their own columns
          *          -   Added "table-striped table-dark" to class of table element
+         *          -   Added "text-nowrap" class to description field
          *          
          *      Update Create view:
          *          -   Delete H4
@@ -50,6 +51,10 @@ namespace TheDigitalToolbox
          *      Update Delete View
          *          -   Update H3 from "this?" to ""@Model.Title"?"
          *          -   Delete div>H4
+         *      TODO: Update Guide Scaffold from Embedded scaffold changes
+         *      TODO: Update Helpful Links Scaffold from Embedded scaffold changes
+         *      TODO: Update Macros Scaffold from Embedded scaffold changes
+         *      TODO: Update Program Scaffold from Embedded scaffold changes
          */
     }
 }
