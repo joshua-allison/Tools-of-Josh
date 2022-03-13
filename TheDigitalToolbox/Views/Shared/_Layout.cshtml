@@ -5,7 +5,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-dark text-light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,83 +14,85 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> @*icons*@
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<body class="bg-dark text-light">
+    <header class="bg-dark text-light">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark text-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Digital Toolbox</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">The Digital Toolbox</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            <span class="text-dark"> Logged in as: @User.Identity.Name </span>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse bg-dark text-light">
+                    <ul class="navbar-nav flex-grow-1 bg-dark text-light">
+                        <li class="nav-item float-right">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-screwdriver-wrench">
+                                        Tools
+                                    </i>
+                                </button>
+                                <div class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Embedded" asp-action="Index">Embedded</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Embeddeds" asp-action="Index">Embeddeds</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Guides" asp-action="Index">Guides</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Macros" asp-action="Index">Macros</a>
+                                    <a class="dropdown-item text-secondary" asp-area="" asp-controller="Programs" asp-action="Index">Programs</a>
+                                </div>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Embedded" asp-action="Index">Embedded</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Embeddeds" asp-action="Index">Embeddeds</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Guides" asp-action="Index">Guides</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Macros" asp-action="Index">Macros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Programs" asp-action="Index">Programs</a>
-                        </li>
-                        @using Microsoft.AspNetCore.Identity
-                        @inject SignInManager<User> signInManager
-
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            // signed-in user - Log Out button and username
-                            <li class="nav-item">
-                                <form method="post" asp-action="Logout" asp-controller="Account"
-                                      asp-area="">
-                                    <input type="submit" class="btn btn-outline-dark" value="Logout" />
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            // get current action
-                            var action = ViewContext.RouteData.Values["action"]?.ToString();
-                            // anonymous user - Register link and Log In button
-                            <li class="nav-item @NavViewModel.Active("Register", action)">
-                                <a asp-action="Register" asp-controller="Account"
-                                   asp-area="" class="btn btn-primary"><i class="fa fa-user-plus"> Register</i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-action="Login" asp-controller="Account"
-                                   asp-area="" class="btn btn-success"><i class="fa fa-sign-in"> Log In</i></a>
-                            </li>
-                        }
-                        <li class="nav-item @NavViewModel.Active("Admin", current)">
-                            <a class="nav-link" asp-action="Index" asp-controller="User">
-                                <span class="btn btn-secondary"><i class="fa fa-cog">Admin</i></span>
-                            </a>
+                        <li class="nav-item float-right">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-outline-secondary dropdown-toggle text-light float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user">
+                                        Account
+                                    </i>
+                                </button>
+                                <div class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
+                                    @using Microsoft.AspNetCore.Identity
+                                    @inject SignInManager<User> signInManager
+                                    @if (signInManager.IsSignedIn(User))
+                                    {
+                                        <span class="p-2 text-center text-nowrap">
+                                            Logged in as: @User.Identity.Name
+                                        </span>
+                                        <hr>
+                                        <form method="post" class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="">
+                                            <input type="submit" value="Logout" />
+                                        </form>
+                                        <a class="dropdown-item text-secondary @NavViewModel.Active("Admin", current)" asp-action="Index" asp-controller="User">
+                                            <i class="fa fa-cog">
+                                                Admin
+                                            </i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        // get current action
+                                        var action = ViewContext.RouteData.Values["action"]?.ToString();
+                                        // anonymous user - Register link and Log In button
+                                        <a class="dropdown-item text-secondary @NavViewModel.Active("Register", action)" asp-action="Register" asp-controller="Account" asp-area="">
+                                            <i class="fa fa-user-plus">
+                                                Register
+                                            </i>
+                                        </a>
+                                        <a class="dropdown-item text-secondary" asp-action="Login" asp-controller="Account" asp-area="">
+                                            <i class="fa fa-sign-in">
+                                                Log In
+                                            </i>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container bg-dark text-light">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

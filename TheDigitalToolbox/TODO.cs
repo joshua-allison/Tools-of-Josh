@@ -24,16 +24,19 @@ namespace TheDigitalToolbox
         /* Changes to Scaffolding: (Using Embeddeds as guinea pig)
          *  The following changes must be added to all domain models (excluding embeddeds)
          *      
-         *      Update Create view:
-         *          -   Delete H4
-         *          -   Update H1 from "Create" to "<tool type> - Create"
-         *      
          *      Update Index view: 
          *          -   Add slugs for the following actions:
          *              -   edit
          *              -   details
          *              -   delete 
          *          -   Delete all fields, excluding Title & Description
+         *          -   Split actions into their own columns
+         *          -   Added "table-striped table-dark" to class of table element
+         *          
+         *      Update Create view:
+         *          -   Delete H4
+         *          -   Update H1 from "Create" to "<tool type> - Create"
+         *      
          *  
          *      Update Details view:
          *         -    Add slug to edit action

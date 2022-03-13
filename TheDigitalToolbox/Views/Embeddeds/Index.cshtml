@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-dark">
     <thead>
         <tr>
             <th>
@@ -18,6 +18,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -31,8 +33,12 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Edit</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Details</a>
+            </td>
+            <td>
                 <a asp-action="Delete" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Delete</a>
             </td>
         </tr>
