@@ -8,7 +8,7 @@ namespace TheDigitalToolbox.TagHelpers
     {
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.BuildTag("table", "dropdown-menu bg-dark text-light");
+            output.BuildTag("table", "dropdown-menu dropdown-menu-right bg-dark text-light");
             output.Attributes.SetAttribute("aria-labelledby", "dropdownMenu");
             output.Attributes.SetAttribute("style", "border-color: #6c757d"); 
         }

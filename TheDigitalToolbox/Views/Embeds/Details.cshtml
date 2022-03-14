@@ -4,20 +4,14 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>
-    @Model.Title - Details
-    <a data-btn-edit class="float-right" asp-action="Edit" asp-route-id="@Model.EmbeddedId" asp-route-slug="@Model.Slug">Edit</a>
-    <a data-btn-back class="float-right" asp-action="Index">to List</a>
-</h1>
+<div>
+    <h3>@Model.Title - Details</h3>
+    <a data-btn-edit asp-action="Edit" asp-route-id="@Model.EmbeddedId" asp-route-slug="@Model.Slug">Edit</a>
+    <a data-btn-back asp-action="Index">to List</a>
+</div>
 <hr />
 <div>
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Creator)
         </dt>
@@ -37,8 +31,12 @@
             @Html.DisplayFor(model => model.ShareURL)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class="col-sm-12embed-responsive embed-responsive-4by3">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dd class="col-sm-12 embed-responsive embed-responsive-1by1 content-align-center">
             @Html.Raw(Model.EmbedString)
         </dd>
     </dl>

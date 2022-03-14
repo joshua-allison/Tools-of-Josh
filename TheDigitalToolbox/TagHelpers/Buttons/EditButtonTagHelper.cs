@@ -10,7 +10,7 @@ namespace TheDigitalToolbox.TagHelpers
             output.Content.Clear();
             output.SetRawPreContentElement("<i class=\"fa fa-pen-to-square fa-xl\"></i>");
             output.Content.Append("\tEdit");
-            output.BuildTag("a", "btn btn-outline-secondary h3 m-0 mr-2");
+            output.BuildTag("a", "btn btn-outline-primary h3 m-0 mr-2");
             output.Attributes.SetAttribute("style", "border-color: rgba(0,0,0,0)");
         }
     }

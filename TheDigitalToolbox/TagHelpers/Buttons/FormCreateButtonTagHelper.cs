@@ -2,8 +2,8 @@
 
 namespace TheDigitalToolbox.TagHelpers
 {
-    [HtmlTargetElement("button", Attributes = "data-btn-save")]
-    public class SaveButtonTagHelper : TagHelper
+    [HtmlTargetElement("button", Attributes = "data-btn-form-create")]
+    public class FormCreateButtonTagHelper : TagHelper
     {
         //  Note:   This tag hlper will only work on "button" tags
         //              It will also only work in forms, and this button acts as form submission.
@@ -15,11 +15,11 @@ namespace TheDigitalToolbox.TagHelpers
                 "<table class=\"form-group mb-2\">\n" +
                     "\t<tr>\n" +
                         "\t\t<td>\n" +
-                            "\t\t\t<i class=\"fa fa-floppy-disk fa-xl text-light\"></i>\n"
+                            "\t\t\t<i class=\"fa fa-circle-plus fa-xl\"></i>\n"
             );
             output.Content.Clear();
-            output.Content.Append("\tSave");
-            output.BuildTag("button", "text-light btn btn-outline-primary");
+            output.Content.Append("\tCreate");
+            output.BuildTag("button", "btn btn-outline-success pb-0");
             output.Attributes.SetAttribute("type", "submit");
             output.SetRawPostContentElement(
                         "\t\t</td>\n" +
