@@ -23,7 +23,7 @@ namespace TheDigitalToolbox.Controllers
             ViewBag.Operation = operation;
 
             //Once I have all the DBSets, I can add them to an IEnumerable and return them to the calling function.
-            var Embeddeds = data.Embeddeds.List(new QueryOptions<Embed> { OrderBy = e => e.EmbeddedId });
+            var Embeddeds = data.Embeds.List(new QueryOptions<Embed> { OrderBy = e => e.ToolId });
             return;
         }
     }

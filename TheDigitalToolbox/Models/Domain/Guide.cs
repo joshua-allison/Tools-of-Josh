@@ -5,8 +5,6 @@ namespace TheDigitalToolbox.Models
     public class Guide : Tool
     {
         // Guides are either articles or videos made to share understanding of a topic, or to assist others in making something.
-        public int GuideId { get; set; }
-
         //Creating code-accessible limits for the string length of the member variable
         private const int TopicMinLength = 1;
         private const int TopicMaxLength = 60;

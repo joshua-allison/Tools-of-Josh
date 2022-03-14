@@ -5,8 +5,6 @@ namespace TheDigitalToolbox.Models
     public class HelpfulLink : Tool
     {
         // Helpful links are descriptive links to exterior websites.
-        public int HelpfulLinkId { get; set; }
-
         //Creating code-accessible limits for the string length of the member variable
         private const int SubjectMinLength = 1;
         private const int SubjectMaxLength = 20;

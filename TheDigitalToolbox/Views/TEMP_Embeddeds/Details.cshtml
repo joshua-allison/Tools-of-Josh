@@ -1,11 +1,11 @@
-﻿@model TheDigitalToolbox.Models.Embedded
+﻿@model TheDigitalToolbox.Models.Embed
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <h3>@Model.Title - Details</h3>
-<a data-btn-edit asp-action="Edit" asp-route-id="@Model.EmbeddedId" asp-route-slug="@Model.Slug">Edit</a>
+<a data-btn-edit asp-action="Edit" asp-route-id="@Model.ToolId" asp-route-slug="@Model.Slug">Edit</a>
 <a data-btn-back asp-action="Index">to List</a>
 <div class="row">
     <div class="col-auto">
@@ -38,7 +38,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dd class="col-auto embed-responsive embed-responsive-1by1 content-align-center">
-            @Html.Raw(Model.EmbedString)
+            @Html.Raw(Model.iFrameString)
         </dd>
     </dl>
 </div>

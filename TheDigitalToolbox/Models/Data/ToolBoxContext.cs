@@ -37,7 +37,6 @@ namespace TheDigitalToolbox.Models
                     Title = "Activity Time Proportions",
                     Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
                     ShareURL = "https://www.desmos.com/calculator/t2beidgdke",
-                    EmbeddedId = 1,
                     iFrameString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>"
                 }
             );
@@ -51,7 +50,6 @@ namespace TheDigitalToolbox.Models
                     Description = "Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. " +
                         "\n Enter Obs Studio with Obs Virtual Camera and VB Virtual Audio.",
                     ShareURL = "https://docs.google.com/document/d/1DPv0Clvu-Aw7UjwIzMMyUkw8t6_L7jkNB5fyCmj5N_8/edit?usp=sharing",
-                    GuideId = 11,
                     Topic = "Virtual Camera / Virtual Audio",
                 }
             );
@@ -64,7 +62,6 @@ namespace TheDigitalToolbox.Models
                     Title = "Encycolorpedia",
                     Description = "Hex color codes, HTML colors, paint matching, directory and color space conversions.",
                     ShareURL = "https://encycolorpedia.com/",
-                    HelpfulLinkId = 1,
                     Subject = "Computer Color Codes",
                 }
             );
@@ -77,7 +74,6 @@ namespace TheDigitalToolbox.Models
                     Title = "Valheim Macro",
                     Description = "A small macro designed to make life a little easier in Valheim.",
                     ShareURL = "https://github.com/UBR-JMA/Valheim-Macro",
-                    MacroId = 1,
                     App = "Valheim",
                 }
             );
@@ -90,7 +86,6 @@ namespace TheDigitalToolbox.Models
                     Title = "Connect-4",
                     Description = "I made this for one of my final projects. It runs just like the tabletop Connect-4 game. (Not really a tool, per se, but still a program I'm proud of)",
                     ShareURL = "https://studio.code.org/projects/applab/KOr2i_IkV1Ajzuigh5zjOng85lpObGzJXJB-7XOjG50",
-                    ProgramId = 1,
                     Language = "Studio Code - App Lab (JavaScript)",
                 }
             );

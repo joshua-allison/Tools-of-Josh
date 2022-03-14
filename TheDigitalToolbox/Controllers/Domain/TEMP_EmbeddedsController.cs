@@ -10,12 +10,12 @@ using TheDigitalToolbox.Models;
 
 namespace TheDigitalToolbox.Controllers
 {
-    public class EmbedsController : Controller
+    public class TEMP_EmbeddedsController : Controller
     {
         private readonly ToolboxContext _context;
         private IHttpContextAccessor accessor { get; set; }
         private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
-        public EmbedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
+        public TEMP_EmbeddedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
         {
             _context = context;
             data = rep;
@@ -39,7 +39,7 @@ namespace TheDigitalToolbox.Controllers
                 .Include(m => m.Uploader)
                 .Include(m => m.Comments)
                 .ThenInclude(comment => comment.Commenter)
-                .FirstOrDefaultAsync(m => m.EmbeddedId == id);
+                .FirstOrDefaultAsync(m => m.ToolId == id);
             if (embedded == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace TheDigitalToolbox.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmbeddedId,EmbedString,Creator,Title,Description,ShareURL")] Embedded embedded)
+        public async Task<IActionResult> Create([Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
         {
             if (ModelState.IsValid)
             {
@@ -91,9 +91,9 @@ namespace TheDigitalToolbox.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmbeddedId,EmbedString,Creator,Title,Description,ShareURL")] Embedded embedded)
+        public async Task<IActionResult> Edit(int id, [Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
         {
-            if (id != embedded.EmbeddedId)
+            if (id != embedded.ToolId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace TheDigitalToolbox.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmbeddedExists(embedded.EmbeddedId))
+                    if (!EmbeddedExists(embedded.ToolId))
                     {
                         return NotFound();
                     }
@@ -130,7 +130,7 @@ namespace TheDigitalToolbox.Controllers
             }
 
             var embedded = await _context.Embeds
-                .FirstOrDefaultAsync(m => m.EmbeddedId == id);
+                .FirstOrDefaultAsync(m => m.ToolId == id);
             if (embedded == null)
             {
                 return NotFound();
@@ -152,7 +152,7 @@ namespace TheDigitalToolbox.Controllers
 
         private bool EmbeddedExists(int id)
         {
-            return _context.Embeds.Any(e => e.EmbeddedId == id);
+            return _context.Embeds.Any(e => e.ToolId == id);
         }
     }
 }

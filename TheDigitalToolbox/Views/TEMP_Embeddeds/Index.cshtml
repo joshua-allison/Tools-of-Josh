@@ -22,14 +22,14 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a data-btn-details asp-action="Details" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">@Html.DisplayFor(modelItem => item.Title)</a>
+                <a data-btn-details asp-action="Details" asp-route-id="@item.ToolId" asp-route-slug="@item.Slug">@Html.DisplayFor(modelItem => item.Title)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                <a data-btn-edit asp-action="Edit" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Edit</a>
-                <a data-btn-delete asp-action="Delete" asp-route-id="@item.EmbeddedId" asp-route-slug="@item.Slug">Delete</a>
+                <a data-btn-edit asp-action="Edit" asp-route-id="@item.ToolId" asp-route-slug="@item.Slug">Edit</a>
+                <a data-btn-delete asp-action="Delete" asp-route-id="@item.ToolId" asp-route-slug="@item.Slug">Delete</a>
             </td>
         </tr>
 }

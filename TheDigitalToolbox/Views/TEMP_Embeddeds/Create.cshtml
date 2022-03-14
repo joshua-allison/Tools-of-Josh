@@ -1,4 +1,4 @@
-﻿@model TheDigitalToolbox.Models.Embedded
+﻿@model TheDigitalToolbox.Models.Embed
 
 @{
     ViewData["Title"] = "Create";
@@ -34,9 +34,9 @@
     </div>
     <div class="row">
         <div class="form-group col-12">
-            <label asp-for="EmbedString" class="control-label"></label>
-            <textarea asp-for="EmbedString" class="form-control"></textarea>
-            <span asp-validation-for="EmbedString" class="text-danger"></span>
+            <label asp-for="iFrameString" class="control-label"></label>
+            <textarea asp-for="iFrameString" class="form-control"></textarea>
+            <span asp-validation-for="iFrameString" class="text-danger"></span>
         </div>
     </div>
     <button data-btn-form-create></button>

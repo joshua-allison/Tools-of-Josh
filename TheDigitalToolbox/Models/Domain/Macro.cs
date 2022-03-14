@@ -4,8 +4,6 @@ namespace TheDigitalToolbox.Models
 {
     public class Macro : Tool
     {
-        public int MacroId { get; set; }
-
         //Creating code-accessible limits for the string length of the member variable
         private const int AppMinLength = 1;
         private const int AppMaxLength = 60;
