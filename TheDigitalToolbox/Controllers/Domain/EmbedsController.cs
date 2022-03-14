@@ -15,7 +15,6 @@ namespace TheDigitalToolbox.Controllers
         private readonly ToolboxContext _context;
         private IHttpContextAccessor accessor { get; set; }
         private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
-
         public EmbedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
         {
             _context = context;
@@ -36,9 +35,10 @@ namespace TheDigitalToolbox.Controllers
             {
                 return NotFound();
             }
-
             var embedded = await _context.Embeds
                 .Include(m => m.Uploader)
+                .Include(m => m.Comments)
+                .ThenInclude(comment => comment.Commenter)
                 .FirstOrDefaultAsync(m => m.EmbeddedId == id);
             if (embedded == null)
             {

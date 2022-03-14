@@ -8,6 +8,7 @@ namespace TheDigitalToolbox.Models
         public int CommentId { get; set; }
         public User Commenter { get; set; }
         public DateTime Date { get; set; }
+        public Tool Tool { get; set; }
 
         //Creating code-accessible limits for the string length of the member variable
         private const int TextMinLength = 1;
