@@ -38,6 +38,7 @@ namespace TheDigitalToolbox.Controllers
             }
 
             var embedded = await _context.Embeds
+                .Include(m => m.Uploader)
                 .FirstOrDefaultAsync(m => m.EmbeddedId == id);
             if (embedded == null)
             {
