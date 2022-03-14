@@ -12,6 +12,8 @@ namespace TheDigitalToolbox.Models
         //TODO 00 Find a way to save the username to the uploaded tool.
         public User Uploader { get; set; }
 
+        public int ToolId { get; set; }
+
         //The people(s) or organization credited for the creation of the tool, specifically in reference to its top-level functionality
         //Creating code-accessible limits for the string length of the member variable
         private const int CreatorMinLength = 1;
