@@ -31,6 +31,7 @@ namespace TheDigitalToolbox.Models
             modelBuilder.Entity<Embedded>().HasData(
                 new Embedded
                 {
+                    ToolId = 1,
                     Uploader = null,
                     Creator = "Josh Allison",
                     Title = "Activity Time Proportions",
@@ -43,6 +44,7 @@ namespace TheDigitalToolbox.Models
             modelBuilder.Entity<Guide>().HasData(
                 new Guide
                 {
+                    ToolId = 2,
                     Uploader = null,
                     Creator = "Josh Allison",
                     Title = "Creating a Virtual Camera/Mic in Obs Studio",
@@ -56,6 +58,7 @@ namespace TheDigitalToolbox.Models
             modelBuilder.Entity<HelpfulLink>().HasData(
                 new HelpfulLink
                 {
+                    ToolId = 3,
                     Uploader = null,
                     Creator = "Praegressus Limited Group",
                     Title = "Encycolorpedia",
@@ -68,6 +71,7 @@ namespace TheDigitalToolbox.Models
             modelBuilder.Entity<Macro>().HasData(
                 new Macro
                 {
+                    ToolId = 4,
                     Uploader = null,
                     Creator = "Josh Allison",
                     Title = "Valheim Macro",
@@ -80,6 +84,7 @@ namespace TheDigitalToolbox.Models
             modelBuilder.Entity<Program>().HasData(
                 new Program
                 {
+                    ToolId = 5,
                     Uploader = null,
                     Creator = "Josh Allison",
                     Title = "Connect-4",

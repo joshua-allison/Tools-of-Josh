@@ -11,7 +11,6 @@ namespace TheDigitalToolbox.Models
         // Which user uploaded the tool, automatically set by the site (no need for validation)
         //TODO 00 Find a way to save the username to the uploaded tool.
         public User Uploader { get; set; }
-
         public int ToolId { get; set; }
 
         //The people(s) or organization credited for the creation of the tool, specifically in reference to its top-level functionality

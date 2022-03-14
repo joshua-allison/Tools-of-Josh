@@ -9,7 +9,6 @@ namespace TheDigitalToolbox.Models
         public User Commenter { get; set; }
         public DateTime Date { get; set; }
 
-
         //Creating code-accessible limits for the string length of the member variable
         private const int TextMinLength = 1;
         private const int TextMaxLength = 300;
