@@ -183,7 +183,7 @@ namespace TheDigitalToolbox.Migrations
                         new
                         {
                             CommentId = 1,
-                            Date = new DateTime(2022, 3, 14, 5, 6, 45, 583, DateTimeKind.Local).AddTicks(951),
+                            Date = new DateTime(2022, 3, 14, 5, 12, 27, 112, DateTimeKind.Local).AddTicks(6888),
                             Text = "Seeded Example Text."
                         });
                 });

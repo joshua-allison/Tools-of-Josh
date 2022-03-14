@@ -10,15 +10,15 @@ using TheDigitalToolbox.Models;
 namespace TheDigitalToolbox.Migrations
 {
     [DbContext(typeof(ToolboxContext))]
-    [Migration("20220311210510_initial")]
-    partial class initial
+    [Migration("20220314121227_PK-Refactor")]
+    partial class PKRefactor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -31,18 +31,18 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -165,39 +165,19 @@ namespace TheDigitalToolbox.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EmbeddedId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GuideId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HelpfulLinkId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MacroId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProgramId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("ToolId")
+                        .HasColumnType("int");
 
                     b.HasKey("CommentId");
 
                     b.HasIndex("CommenterId");
 
-                    b.HasIndex("EmbeddedId");
-
-                    b.HasIndex("GuideId");
-
-                    b.HasIndex("HelpfulLinkId");
-
-                    b.HasIndex("MacroId");
-
-                    b.HasIndex("ProgramId");
+                    b.HasIndex("ToolId");
 
                     b.ToTable("Comments");
 
@@ -205,29 +185,29 @@ namespace TheDigitalToolbox.Migrations
                         new
                         {
                             CommentId = 1,
-                            Date = new DateTime(2022, 3, 11, 13, 5, 9, 595, DateTimeKind.Local).AddTicks(569),
+                            Date = new DateTime(2022, 3, 14, 5, 12, 27, 112, DateTimeKind.Local).AddTicks(6888),
                             Text = "Seeded Example Text."
                         });
                 });
 
-            modelBuilder.Entity("TheDigitalToolbox.Models.Embedded", b =>
+            modelBuilder.Entity("TheDigitalToolbox.Models.Tool", b =>
                 {
-                    b.Property<int>("EmbeddedId")
+                    b.Property<int>("ToolId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Creator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("EmbedString")
+                    b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -237,237 +217,19 @@ namespace TheDigitalToolbox.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UploaderId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("EmbeddedId");
+                    b.HasKey("ToolId");
 
                     b.HasIndex("UploaderId");
 
-                    b.ToTable("Embeds");
+                    b.ToTable("Tool");
 
-                    b.HasData(
-                        new
-                        {
-                            EmbeddedId = 1,
-                            Creator = "Josh Allison",
-                            Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
-                            EmbedString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>",
-                            ShareURL = "https://www.desmos.com/calculator/t2beidgdke",
-                            Title = "Activity Time Proportions"
-                        });
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.Guide", b =>
-                {
-                    b.Property<int>("GuideId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Creator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("ShareURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Topic")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("UploaderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("GuideId");
-
-                    b.HasIndex("UploaderId");
-
-                    b.ToTable("Guides");
-
-                    b.HasData(
-                        new
-                        {
-                            GuideId = 11,
-                            Creator = "Josh Allison",
-                            Description = @"Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. 
- Enter Obs Studio with Obs Virtual Camera and VB Virtual Audio.",
-                            ShareURL = "https://docs.google.com/document/d/1DPv0Clvu-Aw7UjwIzMMyUkw8t6_L7jkNB5fyCmj5N_8/edit?usp=sharing",
-                            Title = "Creating a Virtual Camera/Mic in Obs Studio",
-                            Topic = "Virtual Camera / Virtual Audio"
-                        });
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.HelpfulLink", b =>
-                {
-                    b.Property<int>("HelpfulLinkId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Creator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("ShareURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("UploaderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("HelpfulLinkId");
-
-                    b.HasIndex("UploaderId");
-
-                    b.ToTable("HelpfulLinks");
-
-                    b.HasData(
-                        new
-                        {
-                            HelpfulLinkId = 1,
-                            Creator = "Praegressus Limited Group",
-                            Description = "Hex color codes, HTML colors, paint matching, directory and color space conversions.",
-                            ShareURL = "https://encycolorpedia.com/",
-                            Subject = "Computer Color Codes",
-                            Title = "Encycolorpedia"
-                        });
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.Macro", b =>
-                {
-                    b.Property<int>("MacroId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("App")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Creator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("ShareURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("UploaderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("MacroId");
-
-                    b.HasIndex("UploaderId");
-
-                    b.ToTable("Macros");
-
-                    b.HasData(
-                        new
-                        {
-                            MacroId = 1,
-                            App = "Valheim",
-                            Creator = "Josh Allison",
-                            Description = "A small macro designed to make life a little easier in Valheim.",
-                            ShareURL = "https://github.com/UBR-JMA/Valheim-Macro",
-                            Title = "Valheim Macro"
-                        });
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.Program", b =>
-                {
-                    b.Property<int>("ProgramId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Creator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("ShareURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("UploaderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ProgramId");
-
-                    b.HasIndex("UploaderId");
-
-                    b.ToTable("Programs");
-
-                    b.HasData(
-                        new
-                        {
-                            ProgramId = 1,
-                            Creator = "Josh Allison",
-                            Description = "I made this for one of my final projects. It runs just like the tabletop Connect-4 game. (Not really a tool, per se, but still a program I'm proud of)",
-                            Language = "Studio Code - App Lab (JavaScript)",
-                            ShareURL = "https://studio.code.org/projects/applab/KOr2i_IkV1Ajzuigh5zjOng85lpObGzJXJB-7XOjG50",
-                            Title = "Connect-4"
-                        });
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Tool");
                 });
 
             modelBuilder.Entity("TheDigitalToolbox.Models.User", b =>
@@ -483,8 +245,8 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -502,12 +264,12 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -525,20 +287,134 @@ namespace TheDigitalToolbox.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Embed", b =>
+                {
+                    b.HasBaseType("TheDigitalToolbox.Models.Tool");
+
+                    b.Property<string>("iFrameString")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Embed");
+
+                    b.HasData(
+                        new
+                        {
+                            ToolId = 1,
+                            Creator = "Josh Allison",
+                            Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
+                            ShareURL = "https://www.desmos.com/calculator/t2beidgdke",
+                            Title = "Activity Time Proportions",
+                            iFrameString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>"
+                        });
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Guide", b =>
+                {
+                    b.HasBaseType("TheDigitalToolbox.Models.Tool");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasDiscriminator().HasValue("Guide");
+
+                    b.HasData(
+                        new
+                        {
+                            ToolId = 2,
+                            Creator = "Josh Allison",
+                            Description = "Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. \n Enter Obs Studio with Obs Virtual Camera and VB Virtual Audio.",
+                            ShareURL = "https://docs.google.com/document/d/1DPv0Clvu-Aw7UjwIzMMyUkw8t6_L7jkNB5fyCmj5N_8/edit?usp=sharing",
+                            Title = "Creating a Virtual Camera/Mic in Obs Studio",
+                            Topic = "Virtual Camera / Virtual Audio"
+                        });
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.HelpfulLink", b =>
+                {
+                    b.HasBaseType("TheDigitalToolbox.Models.Tool");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasDiscriminator().HasValue("HelpfulLink");
+
+                    b.HasData(
+                        new
+                        {
+                            ToolId = 3,
+                            Creator = "Praegressus Limited Group",
+                            Description = "Hex color codes, HTML colors, paint matching, directory and color space conversions.",
+                            ShareURL = "https://encycolorpedia.com/",
+                            Title = "Encycolorpedia",
+                            Subject = "Computer Color Codes"
+                        });
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Macro", b =>
+                {
+                    b.HasBaseType("TheDigitalToolbox.Models.Tool");
+
+                    b.Property<string>("App")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasDiscriminator().HasValue("Macro");
+
+                    b.HasData(
+                        new
+                        {
+                            ToolId = 4,
+                            Creator = "Josh Allison",
+                            Description = "A small macro designed to make life a little easier in Valheim.",
+                            ShareURL = "https://github.com/UBR-JMA/Valheim-Macro",
+                            Title = "Valheim Macro",
+                            App = "Valheim"
+                        });
+                });
+
+            modelBuilder.Entity("TheDigitalToolbox.Models.Program", b =>
+                {
+                    b.HasBaseType("TheDigitalToolbox.Models.Tool");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasDiscriminator().HasValue("Program");
+
+                    b.HasData(
+                        new
+                        {
+                            ToolId = 5,
+                            Creator = "Josh Allison",
+                            Description = "I made this for one of my final projects. It runs just like the tabletop Connect-4 game. (Not really a tool, per se, but still a program I'm proud of)",
+                            ShareURL = "https://studio.code.org/projects/applab/KOr2i_IkV1Ajzuigh5zjOng85lpObGzJXJB-7XOjG50",
+                            Title = "Connect-4",
+                            Language = "Studio Code - App Lab (JavaScript)"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -598,60 +474,27 @@ namespace TheDigitalToolbox.Migrations
                         .WithMany()
                         .HasForeignKey("CommenterId");
 
-                    b.HasOne("TheDigitalToolbox.Models.Embedded", null)
+                    b.HasOne("TheDigitalToolbox.Models.Tool", "Tool")
                         .WithMany("Comments")
-                        .HasForeignKey("EmbeddedId");
+                        .HasForeignKey("ToolId");
 
-                    b.HasOne("TheDigitalToolbox.Models.Guide", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("GuideId");
+                    b.Navigation("Commenter");
 
-                    b.HasOne("TheDigitalToolbox.Models.HelpfulLink", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("HelpfulLinkId");
-
-                    b.HasOne("TheDigitalToolbox.Models.Macro", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("MacroId");
-
-                    b.HasOne("TheDigitalToolbox.Models.Program", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("ProgramId");
+                    b.Navigation("Tool");
                 });
 
-            modelBuilder.Entity("TheDigitalToolbox.Models.Embedded", b =>
+            modelBuilder.Entity("TheDigitalToolbox.Models.Tool", b =>
                 {
                     b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
                         .WithMany()
                         .HasForeignKey("UploaderId");
+
+                    b.Navigation("Uploader");
                 });
 
-            modelBuilder.Entity("TheDigitalToolbox.Models.Guide", b =>
+            modelBuilder.Entity("TheDigitalToolbox.Models.Tool", b =>
                 {
-                    b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("UploaderId");
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.HelpfulLink", b =>
-                {
-                    b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("UploaderId");
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.Macro", b =>
-                {
-                    b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("UploaderId");
-                });
-
-            modelBuilder.Entity("TheDigitalToolbox.Models.Program", b =>
-                {
-                    b.HasOne("TheDigitalToolbox.Models.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("UploaderId");
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
