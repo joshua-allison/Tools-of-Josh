@@ -16,14 +16,14 @@
             }
         }
 
-        private IRepository<Embedded> EmbeddedData;
-        public IRepository<Embedded> Embeddeds
+        private IRepository<Embed> EmbedData;
+        public IRepository<Embed> Embeds
         {
             get
             {
-                if (EmbeddedData == null)
-                    EmbeddedData = new Repository<Embedded>(context);
-                return EmbeddedData;
+                if (EmbedData == null)
+                    EmbedData = new Repository<Embed>(context);
+                return EmbedData;
             }
         }
 

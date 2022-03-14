@@ -11,7 +11,7 @@ namespace TheDigitalToolbox.Models
     {
         public ToolboxContext(DbContextOptions<ToolboxContext> options) : base(options) { }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Embedded> Embeds{ get; set; }
+        public DbSet<Embed> Embeds{ get; set; }
         public DbSet<Guide> Guides { get; set; }
         public DbSet<HelpfulLink> HelpfulLinks { get; set; }
         public DbSet<Macro> Macros { get; set; }
@@ -28,8 +28,8 @@ namespace TheDigitalToolbox.Models
                     Text = "Seeded Example Text."
                 }
             );
-            modelBuilder.Entity<Embedded>().HasData(
-                new Embedded
+            modelBuilder.Entity<Embed>().HasData(
+                new Embed
                 {
                     ToolId = 1,
                     Uploader = null,
@@ -38,7 +38,7 @@ namespace TheDigitalToolbox.Models
                     Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
                     ShareURL = "https://www.desmos.com/calculator/t2beidgdke",
                     EmbeddedId = 1,
-                    EmbedString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>"
+                    iFrameString = "<iframe src = \"https://www.desmos.com/calculator/t2beidgdke?embed\" width = \"500\" height = \"500\" style = \"border: 1px solid #ccc\" frameborder = 0 ></iframe>"
                 }
             );
             modelBuilder.Entity<Guide>().HasData(

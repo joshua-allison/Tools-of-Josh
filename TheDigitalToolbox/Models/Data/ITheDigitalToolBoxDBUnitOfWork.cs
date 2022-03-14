@@ -3,7 +3,7 @@
     public interface ITheDigitalToolBoxDBUnitOfWork
     {
         public IRepository<Comment> Comments { get; }
-        public IRepository<Embedded> Embeddeds { get; }
+        public IRepository<Embed> Embeds { get; }
         public IRepository<Guide> Guides { get; }
         public IRepository<HelpfulLink> HelpfulLinks { get; }
         public IRepository<Macro> Macros { get; }

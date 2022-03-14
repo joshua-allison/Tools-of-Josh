@@ -8,14 +8,14 @@ namespace TheDigitalToolboxTests.ModelValidationTests
     {
         #region TestSetup
         //quick set-up function
-        public Embedded CreateEmbedded()
+        public Embed CreateEmbedded()
         {
-            Embedded testEmbedded = new Embedded
+            Embed testEmbedded = new Embed
             {
                 Title = "Test: This is an appropriate title.",
                 Description = "Test: This is an appropriate description. It must have sufficient length.",
                 ShareURL = "https://www.ledr.com/colours/green.htm", //test URL
-                EmbedString = "<iframe src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0></iframe>" // example embedded calculator iframe
+                iFrameString = "<iframe src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0></iframe>" // example embedded calculator iframe
             };
             return testEmbedded;
         }
@@ -26,11 +26,11 @@ namespace TheDigitalToolboxTests.ModelValidationTests
         public void EmbedStringMissing()
         {
             //arrange
-            Embedded testEmbedded = CreateEmbedded();
+            Embed testEmbedded = CreateEmbedded();
 
             //Missing end tag
             //act (change URL to improper format)
-            testEmbedded.EmbedString = "";
+            testEmbedded.iFrameString = "";
 
             //assert (title required)
             TestHelpers.TestModelValidation(testEmbedded, "EmbedString", "required");
@@ -40,11 +40,11 @@ namespace TheDigitalToolboxTests.ModelValidationTests
         public void EmbedStringMissingStartTag()
         {
             //arrange
-            Embedded testEmbedded = CreateEmbedded();
+            Embed testEmbedded = CreateEmbedded();
 
             //Missing start tag
             //act (change URL to improper format)
-            testEmbedded.EmbedString = " src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0></iframe>";
+            testEmbedded.iFrameString = " src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0></iframe>";
 
             //assert (title required)
             TestHelpers.TestModelValidation(testEmbedded, "EmbedString", "Embed string must start with \"<iframe\" and end with \"<\\iframe>\".");
@@ -54,11 +54,11 @@ namespace TheDigitalToolboxTests.ModelValidationTests
         public void EmbedStringMissingEndTag()
         {
             //arrange
-            Embedded testEmbedded = CreateEmbedded();
+            Embed testEmbedded = CreateEmbedded();
 
             //Missing end tag
             //act (change URL to improper format)
-            testEmbedded.EmbedString = "<iframe src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0>";
+            testEmbedded.iFrameString = "<iframe src=\"https://www.desmos.com/calculator/qa9g2b8e3a?embed\" width=\"500\" height=\"500\" style=\"border: 1px solid #ccc\" frameborder=0>";
 
             //assert (title required)
             TestHelpers.TestModelValidation(testEmbedded, "EmbedString", "Embed string must start with \"<iframe\" and end with \"<\\iframe>\".");
