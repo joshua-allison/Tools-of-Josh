@@ -13,7 +13,7 @@ namespace TheDigitalToolbox.Models
         public int ToolId { get; set; }
         public string Slug => Title?.Replace(' ', '-').ToLower();
         public List<Comment> Comments { get; set; }
-        public User Uploader { get; set; }
+        public User User { get; set; }
 
         //The people(s) or organization credited for the creation of the tool, specifically in reference to its top-level functionality
         //Creating code-accessible limits for the string length of the member variable

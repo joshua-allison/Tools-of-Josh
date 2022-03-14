@@ -32,7 +32,7 @@ namespace TheDigitalToolbox.Models
                 new Embed
                 {
                     ToolId = 1,
-                    Uploader = null,
+                    User = null,
                     Creator = "Josh Allison",
                     Title = "Activity Time Proportions",
                     Description = "This graph shows you the proportion of how much time you lose on activity within a scheduled time frame when you're late.",
@@ -44,7 +44,7 @@ namespace TheDigitalToolbox.Models
                 new Guide
                 {
                     ToolId = 2,
-                    Uploader = null,
+                    User = null,
                     Creator = "Josh Allison",
                     Title = "Creating a Virtual Camera/Mic in Obs Studio",
                     Description = "Discord and zoom have made it easy to share video and share screen, with some limitations to both, and they don’t support        webcam-in-display functionality. If they do eventually add it, customization will likely be limited. " +
@@ -57,7 +57,7 @@ namespace TheDigitalToolbox.Models
                 new HelpfulLink
                 {
                     ToolId = 3,
-                    Uploader = null,
+                    User = null,
                     Creator = "Praegressus Limited Group",
                     Title = "Encycolorpedia",
                     Description = "Hex color codes, HTML colors, paint matching, directory and color space conversions.",
@@ -69,7 +69,7 @@ namespace TheDigitalToolbox.Models
                 new Macro
                 {
                     ToolId = 4,
-                    Uploader = null,
+                    User = null,
                     Creator = "Josh Allison",
                     Title = "Valheim Macro",
                     Description = "A small macro designed to make life a little easier in Valheim.",
@@ -81,7 +81,7 @@ namespace TheDigitalToolbox.Models
                 new Program
                 {
                     ToolId = 5,
-                    Uploader = null,
+                    User = null,
                     Creator = "Josh Allison",
                     Title = "Connect-4",
                     Description = "I made this for one of my final projects. It runs just like the tabletop Connect-4 game. (Not really a tool, per se, but still a program I'm proud of)",

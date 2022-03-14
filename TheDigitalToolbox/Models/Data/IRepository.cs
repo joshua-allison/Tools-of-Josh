@@ -11,6 +11,7 @@ namespace TheDigitalToolbox.Models
         T Get(int id);
         T Get(string id);
         ValueTask<T> GetAsync(int id);
+        ValueTask<T> GetAsync(string id);
         T Get(QueryOptions<T> options);
 
         void Insert(T entity);

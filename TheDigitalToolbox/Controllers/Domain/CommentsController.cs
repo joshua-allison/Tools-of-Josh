@@ -2,75 +2,69 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TheDigitalToolbox.Models;
 
-namespace TheDigitalToolbox.Controllers
+namespace TheDigitalToolbox.Controllers.Domain
 {
-    public class TEMP_EmbeddedsController : Controller
+    public class CommentsController : Controller
     {
         private readonly ToolboxContext _context;
-        private IHttpContextAccessor accessor { get; set; }
-        private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
-        public TEMP_EmbeddedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
+
+        public CommentsController(ToolboxContext context)
         {
             _context = context;
-            data = rep;
-            accessor = http;
         }
 
-        // GET: Embeds
+        // GET: Comments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Embeds.ToListAsync());
+            return View(await _context.Comments.ToListAsync());
         }
 
-        // GET: Embeds/Details/5
+        // GET: Comments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var embedded = await _context.Embeds
-                .Include(m => m.User)
-                .Include(m => m.Comments)
-                .ThenInclude(comment => comment.Commenter)
-                .FirstOrDefaultAsync(m => m.ToolId == id);
-            if (embedded == null)
+
+            var comment = await _context.Comments
+                .FirstOrDefaultAsync(m => m.CommentId == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(embedded);
+            return View(comment);
         }
 
-        // GET: Embeds/Create
+        // GET: Comments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Embeds/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
+        public async Task<IActionResult> Create([Bind("CommentId,Date,Text")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(embedded);
+                _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(embedded);
+            return View(comment);
         }
 
-        // GET: Embeds/Edit/5
+        // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,22 +72,22 @@ namespace TheDigitalToolbox.Controllers
                 return NotFound();
             }
 
-            var embedded = await _context.Embeds.FindAsync(id);
-            if (embedded == null)
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment == null)
             {
                 return NotFound();
             }
-            return View(embedded);
+            return View(comment);
         }
 
-        // POST: Embeds/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentId,Date,Text")] Comment comment)
         {
-            if (id != embedded.ToolId)
+            if (id != comment.CommentId)
             {
                 return NotFound();
             }
@@ -102,12 +96,12 @@ namespace TheDigitalToolbox.Controllers
             {
                 try
                 {
-                    _context.Update(embedded);
+                    _context.Update(comment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmbeddedExists(embedded.ToolId))
+                    if (!CommentExists(comment.CommentId))
                     {
                         return NotFound();
                     }
@@ -118,10 +112,10 @@ namespace TheDigitalToolbox.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(embedded);
+            return View(comment);
         }
 
-        // GET: Embeds/Delete/5
+        // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,30 +123,30 @@ namespace TheDigitalToolbox.Controllers
                 return NotFound();
             }
 
-            var embedded = await _context.Embeds
-                .FirstOrDefaultAsync(m => m.ToolId == id);
-            if (embedded == null)
+            var comment = await _context.Comments
+                .FirstOrDefaultAsync(m => m.CommentId == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(embedded);
+            return View(comment);
         }
 
-        // POST: Embeds/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var embedded = await _context.Embeds.FindAsync(id);
-            _context.Embeds.Remove(embedded);
+            var comment = await _context.Comments.FindAsync(id);
+            _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmbeddedExists(int id)
+        private bool CommentExists(int id)
         {
-            return _context.Embeds.Any(e => e.ToolId == id);
+            return _context.Comments.Any(e => e.CommentId == id);
         }
     }
 }

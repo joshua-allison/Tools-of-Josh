@@ -7,6 +7,7 @@ using TheDigitalToolbox.Models;
 
 namespace TheDigitalToolbox.Areas.Admin.Controllers
 {
+    //comment authorization annotation below to access admin
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {

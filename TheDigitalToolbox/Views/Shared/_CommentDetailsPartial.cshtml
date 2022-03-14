@@ -1,0 +1,12 @@
+﻿@model TheDigitalToolbox.Models.Comment
+
+<table class="table table-bordered table-striped table-dark table-sm">
+    <tr>
+        <td>@model.</td>
+        <td>@Html.DisplayFor(model => model.Text)</td>
+        <td>@Html.DisplayFor(model => model.Date)</td>
+    </tr>
+</table>
+<div>
+    <a asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.CommentId">Edit</a>
+</div>
