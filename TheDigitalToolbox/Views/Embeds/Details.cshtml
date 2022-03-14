@@ -1,0 +1,45 @@
+﻿@model TheDigitalToolbox.Models.Embedded
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>
+    @Model.Title - Details
+    <a data-btn-edit class="float-right" asp-action="Edit" asp-route-id="@Model.EmbeddedId" asp-route-slug="@Model.Slug">Edit</a>
+    <a data-btn-back class="float-right" asp-action="Index">to List</a>
+</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Creator)
+        </dd>
+        <dt class="col-sm-2">
+            Uploaded By
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Uploader.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShareURL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShareURL)
+        </dd>
+        <dt class="col-sm-2">
+        </dt>
+        <dd class="col-sm-12embed-responsive embed-responsive-4by3">
+            @Html.Raw(Model.EmbedString)
+        </dd>
+    </dl>
+</div>

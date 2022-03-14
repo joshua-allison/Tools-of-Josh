@@ -25,6 +25,8 @@ namespace TheDigitalToolbox
          *  The following changes must be added to all domain models (excluding embeddeds)
          *      
          *      Update Index view: 
+         *          -   Change H1 from "Index" to "Embeds"
+         *          -   Moved H1 and create btn to the same line
          *          -   Add slugs for the following actions:
          *              -   edit
          *              -   details
@@ -33,6 +35,8 @@ namespace TheDigitalToolbox
          *          -   Split actions into their own columns
          *          -   Added "table-striped table-dark" to class of table element
          *          -   Added "text-nowrap" class to description field
+         *          -   Added custom tags to CRUD buttons
+         *          -   Added class="text-muted" to tr of thead
          *          
          *      Update Create view:
          *          -   Delete H4
@@ -43,14 +47,25 @@ namespace TheDigitalToolbox
          *         -    Add slug to edit action
          *         -    Change header from "Details" to "@Model.Title - Details"
          *         -    Delete div>H4
+         *         -    Moved buttons to header
+         *         -    Added custom attributes for buttons
          *      
          *      Update Edit view:
          *         -    Delete H4
          *         -    Change H1 from "Edit" to "@Model.Title - Edit"
+         *         -    Re-arranged fields
          *         
-         *      Update Delete View
+         *      Update Delete 
+         *          View
          *          -   Update H3 from "this?" to ""@Model.Title"?"
          *          -   Delete div>H4
+         *          -   Greatly minimized viewable attributes
+         *          -   Used muted text and block quotes with icon for description
+         *          -   Stylized 
+         *          Action
+         *          -   Restricted to Admin
+         *          
+         *          
          *      TODO: Update Guide Scaffold from Embedded scaffold changes
          *      TODO: Update Helpful Links Scaffold from Embedded scaffold changes
          *      TODO: Update Macros Scaffold from Embedded scaffold changes

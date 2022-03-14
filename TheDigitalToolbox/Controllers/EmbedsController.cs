@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,22 +10,26 @@ using TheDigitalToolbox.Models;
 
 namespace TheDigitalToolbox.Controllers
 {
-    public class EmbeddedsController : Controller
+    public class EmbedsController : Controller
     {
         private readonly ToolboxContext _context;
+        private IHttpContextAccessor accessor { get; set; }
+        private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
 
-        public EmbeddedsController(ToolboxContext context)
+        public EmbedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
         {
             _context = context;
+            data = rep;
+            accessor = http;
         }
 
-        // GET: Embeddeds
+        // GET: Embeds
         public async Task<IActionResult> Index()
         {
             return View(await _context.Embeds.ToListAsync());
         }
 
-        // GET: Embeddeds/Details/5
+        // GET: Embeds/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +47,13 @@ namespace TheDigitalToolbox.Controllers
             return View(embedded);
         }
 
-        // GET: Embeddeds/Create
+        // GET: Embeds/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Embeddeds/Create
+        // POST: Embeds/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +69,7 @@ namespace TheDigitalToolbox.Controllers
             return View(embedded);
         }
 
-        // GET: Embeddeds/Edit/5
+        // GET: Embeds/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +85,7 @@ namespace TheDigitalToolbox.Controllers
             return View(embedded);
         }
 
-        // POST: Embeddeds/Edit/5
+        // POST: Embeds/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +120,7 @@ namespace TheDigitalToolbox.Controllers
             return View(embedded);
         }
 
-        // GET: Embeddeds/Delete/5
+        // GET: Embeds/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +138,7 @@ namespace TheDigitalToolbox.Controllers
             return View(embedded);
         }
 
-        // POST: Embeddeds/Delete/5
+        // POST: Embeds/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

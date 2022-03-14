@@ -8,8 +8,8 @@ namespace TheDigitalToolbox.TagHelpers
     {
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.BuildTag("span", "h1 mb-3");
-            output.Attributes.SetAttribute("style", "text-shadow: 0px 0px 10px white; color: white");
+            output.BuildTag("span", "h3 mb-3 text-nowrap");
+            output.Attributes.SetAttribute("style", "text-shadow: 0px 0px 15px cyan; color: white");
         }
     }
 }

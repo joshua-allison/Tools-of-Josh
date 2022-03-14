@@ -6,6 +6,7 @@ namespace TheDigitalToolbox.Models
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> List(QueryOptions<T> options);
+        Task<IEnumerable<T>> ListAsync(QueryOptions<T> options);
 
         T Get(int id);
         T Get(string id);

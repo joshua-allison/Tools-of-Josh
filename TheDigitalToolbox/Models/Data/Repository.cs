@@ -18,15 +18,33 @@ namespace TheDigitalToolbox.Models
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
-            foreach (string include in options.GetIncludes()) {
+            foreach (string include in options.GetIncludes())
+            {
                 query = query.Include(include);
             }
             if (options.HasWhere)
                 query = query.Where(options.Where);
-            if (options.HasOrderBy) {
+            if (options.HasOrderBy)
+            {
                 query = query.OrderBy(options.OrderBy);
             }
             return query.ToList();
+        }
+
+        public virtual async  Task<IEnumerable<T>> ListAsync(QueryOptions<T> options)
+        {
+            IQueryable<T> query = dbset;
+            foreach (string include in options.GetIncludes())
+            {
+                query = query.Include(include);
+            }
+            if (options.HasWhere)
+                query = query.Where(options.Where);
+            if (options.HasOrderBy)
+            {
+                query = query.OrderBy(options.OrderBy);
+            }
+            return await query.ToListAsync();
         }
         public virtual T Get(int id) => dbset.Find(id);
         public virtual T Get(string id) => dbset.Find(id);

@@ -8,7 +8,7 @@ namespace TheDigitalToolbox.Models
         public int EmbeddedId { get; set; }
 
         [Required(ErrorMessage = "A(n) {0} is required.")]
-        [RegularExpression(@"^<iframe.*</iframe>$", ErrorMessage = "Embed string must start with \"<iframe\" and end with \"<\\iframe>\". ")]
+        [RegularExpression(@"^<iframe.*</iframe>$", ErrorMessage = "Embed string must start and end with iframe tags.")]
         public string EmbedString { get; set; }
     }
 }

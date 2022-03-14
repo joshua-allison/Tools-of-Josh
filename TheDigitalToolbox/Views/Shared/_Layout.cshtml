@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> @*icons*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> @*icons*@
 </head>
+
+@*any data-* attributes seen are custom attributes targeted by custom tag helpers*@
 <body data-dark-mode>
     <header>
         <nav data-dark-mode class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
@@ -32,33 +34,28 @@
                             <i class="fa fa-screwdriver-wrench fa-2x"></i><span class="h3 mb-0 p-0 pl-3">Tools</span>
                         </button>
                         @*Tool Options*@
-                        <table data-nav-dd-menu>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-file-code fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="Embeddeds" asp-action="Index">Embeddeds</a></td>
-                                @*'nav-dd-txt' is a custom attribute targeted by the NavDropdownItemText custom tag helper*@
-                            </tr>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-comment fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="Comments" asp-action="Index">Comments</a></td>
-                            </tr>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-book fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="Guides" asp-action="Index">Guides</a></td>
-                            </tr>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-link fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a></td>
-                            </tr>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-keyboard fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="Macros" asp-action="Index">Macros</a></td>
-                            </tr>
-                            <tr data-nav-dd-row>
-                                <td><i class="fa fa-laptop-code fa-xl"></i></td>
-                                <td><a data-nav-dd-txt asp-controller="Programs" asp-action="Index">Programs</a></td>
-                            </tr>
-                        </table>
+                    <table data-nav-dd-menu>
+                        <tr data-nav-dd-row>
+                            <td><i class="fa fa-file-code fa-xl"></i></td>
+                            <td><a data-nav-dd-txt asp-controller="Embeds" asp-action="Index">Embeds</a></td>
+                        </tr>
+                        <tr data-nav-dd-row>
+                            <td><i class="fa fa-book fa-xl"></i></td>
+                            <td><a data-nav-dd-txt asp-controller="Guides" asp-action="Index">Guides</a></td>
+                        </tr>
+                        <tr data-nav-dd-row>
+                            <td><i class="fa fa-keyboard fa-xl"></i></td>
+                            <td><a data-nav-dd-txt asp-controller="Macros" asp-action="Index">Macros</a></td>
+                        </tr>
+                        <tr data-nav-dd-row>
+                            <td><i class="fa fa-laptop-code fa-xl"></i></td>
+                            <td><a data-nav-dd-txt asp-controller="Programs" asp-action="Index">Programs</a></td>
+                        </tr>
+                        <tr data-nav-dd-row>
+                            <td><i class="fa fa-link fa-xl"></i></td>
+                            <td><a data-nav-dd-txt asp-controller="HelpfulLinks" asp-action="Index">Helpful Links</a></td>
+                        </tr>
+                    </table>
                     </div>
                     @*Account*@
                     <div class="nav-item dropdown float-right ml-4 mr-4">
@@ -71,10 +68,12 @@
                         @if (signInManager.IsSignedIn(User))
                         {
                             <table data-nav-dd-menu>
-                                <tr><td>
+                                <tr>
+                                    <td>
                                         <span class="h5 p-2 font-weight-bold text-center text-nowrap"> Logged in as: @User.Identity.Name </span>
                                         <hr style="background-color: #6c757d">
-                                </td></tr>
+                                    </td>
+                                </tr>
                                 <tr data-nav-dd-row>
                                     <td><i class="fa fa-right-from-bracket fa-xl"></i></td>
                                     <td>
@@ -83,6 +82,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @*TODO: Find a way to hide the admin button if the logged in user is not an admin.*@
                                 <tr data-nav-dd-row>
                                     <td><i class="fa fa-user-gear fa-xl"></i></td>
                                     <td>
@@ -122,7 +122,7 @@
             </div>
         </nav>
     </header>
-    <div class="container bg-dark text-light">
+    <div class="container" data-dark-mode>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
