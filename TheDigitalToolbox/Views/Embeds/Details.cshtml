@@ -23,20 +23,17 @@
         </table>
     </div>
 </div>
-<hr />
-<partial name="_CommentCreatePartial" />
-@foreach (Comment c in Model.Comments)
-{
-    <partial name="_CommentDetailsPartial" />
-}
+<div class="embed-responsive embed-responsive-1by1 content-align-center">
+    @Html.DisplayFor(model => model.Description)
+    @Html.Raw(Model.iFrameString)
+</div>
 <hr />
 <div>
-    <dl class="row">
-        <dd class="col-auto">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dd class="col-auto embed-responsive embed-responsive-1by1 content-align-center">
-            @Html.Raw(Model.iFrameString)
-        </dd>
-    </dl>
+    @{Comment newComment = new Comment(); }
+    <partial name="_CommentCreatePartial" model="@newComment" />
+    <hr />
+    @foreach (Comment comment in Model.Comments)
+    {
+        <partial name="_CommentDetailsPartial" model="@comment" />
+    }
 </div>

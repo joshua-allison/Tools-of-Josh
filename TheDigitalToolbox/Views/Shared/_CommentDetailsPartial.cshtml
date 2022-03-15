@@ -2,11 +2,9 @@
 
 <table class="table table-bordered table-striped table-dark table-sm">
     <tr>
-        <td>@model.</td>
-        <td>@Html.DisplayFor(model => model.Text)</td>
-        <td>@Html.DisplayFor(model => model.Date)</td>
+        <td>@Model.Commenter</td>
+        <td>@Model.Text</td>
+        <td>@Html.DisplayFor(m => m.Date, "{0,MM/dd/yyyy}")</td>
+        <td><a data-btn-edit asp-controller="Comment" asp-action="Edit">Edit</a></td>
     </tr>
 </table>
-<div>
-    <a asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.CommentId">Edit</a>
-</div>
