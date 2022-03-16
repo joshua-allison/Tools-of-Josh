@@ -1,0 +1,24 @@
+﻿@model TheDigitalToolbox.Models.Embed
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="Display-3" style="text-shadow: 0px 0px 15px red">Confirm Deletion</h1>
+
+<h2>Are you sure you want to delete "@Model.Title"?</h2>
+<div>
+    <blockquote class="text-muted">
+        <i class="fa fa-quote-left fa-xl"></i>
+        @Html.DisplayFor(model => model.Description)
+        <i class="fa fa-quote-right fa-xl"></i>
+    </blockquote>
+</div>
+
+<hr />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ToolId" />
+    <input type="submit" value="Delete" class="btn btn-outline-danger" />
+    <a data-btn-back asp-action="Index">to List</a>
+</form>
+

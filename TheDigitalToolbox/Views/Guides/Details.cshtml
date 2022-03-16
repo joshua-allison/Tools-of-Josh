@@ -1,0 +1,30 @@
+﻿@model TheDigitalToolbox.Models.Guide
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>@Model.Title - Details</h3>
+<a data-btn-edit asp-action="Edit" asp-route-id="@Model.ToolId" asp-route-slug="@Model.Slug">Edit</a>
+<a data-btn-back asp-action="Index">to List</a>
+<div class="row">
+    <div class="col-auto">
+        <table class="table table-bordered table-striped table-dark table-sm">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Creator)</th>
+                <th class="text-nowrap">Added By</th>
+                <th>Share Link</th>
+                <th>Topic</th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Creator)</td>
+                <td class="text-nowrap">@Html.DisplayFor(model => model.User.UserName)</td>
+                <td><a href="@Model.ShareURL">@Model.Title</a></td>
+                <td>@Html.DisplayFor(model => model.Topic)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    @Html.DisplayFor(model => model.Description)
+</div>

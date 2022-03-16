@@ -1,0 +1,51 @@
+﻿@model TheDigitalToolbox.Models.Embed
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>@Model.Title - Details</h3>
+<a data-btn-edit asp-action="Edit" asp-route-id="@Model.ToolId" asp-route-slug="@Model.Slug">Edit</a>
+<a data-btn-back asp-action="Index">to List</a>
+<div class="row">
+    <div class="col-auto">
+        <table class="table table-bordered table-striped table-dark table-sm">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Creator)</th>
+                <th>Added By</th>
+                <th>Share Link</th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Creator)</td>
+                <td>@Html.DisplayFor(model => model.User.UserName)</td>
+                <td>@Html.DisplayFor(model => model.ShareURL)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="embed-responsive embed-responsive-1by1 content-align-center">
+    @Html.DisplayFor(model => model.Description)
+    @Html.Raw(Model.iFrameString)
+</div>
+
+
+
+@*
+    I had to cut the comment feature for now. Getting a comment associated with a tool was taking too long, and I needed to get the project turned in.
+
+    <hr />
+    <div>
+        @{
+            Comment newComment = new Comment();
+            var tool = ViewBag.Tool;
+            newComment.Tool = ViewBag.Tool;
+            ViewData.Add("CurrentTool", tool);
+            //This assigns the current tool to the tool associated comment (and it works);
+        }
+        <partial name="_CommentCreatePartial" model="newComment" view-data="ViewData"/>
+        @foreach (Comment comment in Model.Comments)
+        {
+            <partial name="_CommentDetailsPartial" model="@comment" />
+        }
+    </div>
+*@
