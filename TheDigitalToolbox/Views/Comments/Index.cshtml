@@ -9,14 +9,20 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-dark">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Commenter.UserName)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tool.Title)
             </th>
             <th></th>
         </tr>
@@ -25,10 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Commenter.UserName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tool.Title)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CommentId">Edit</a> |

@@ -27,13 +27,25 @@
     @Html.DisplayFor(model => model.Description)
     @Html.Raw(Model.iFrameString)
 </div>
-<hr />
-<div>
-    @{Comment newComment = new Comment(); }
-    <partial name="_CommentCreatePartial" model="@newComment" />
+
+
+
+@*
+    I had to cut the comment feature for now. Getting a comment associated with a tool was taking too long, and I needed to get the project turned in.
+
     <hr />
-    @foreach (Comment comment in Model.Comments)
-    {
-        <partial name="_CommentDetailsPartial" model="@comment" />
-    }
-</div>
+    <div>
+        @{
+            Comment newComment = new Comment();
+            var tool = ViewBag.Tool;
+            newComment.Tool = ViewBag.Tool;
+            ViewData.Add("CurrentTool", tool);
+            //This assigns the current tool to the tool associated comment (and it works);
+        }
+        <partial name="_CommentCreatePartial" model="newComment" view-data="ViewData"/>
+        @foreach (Comment comment in Model.Comments)
+        {
+            <partial name="_CommentDetailsPartial" model="@comment" />
+        }
+    </div>
+*@

@@ -3,15 +3,35 @@
 @{
     ViewData["Title"] = "Create";
 }
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Comment" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Date" />
-            <input type="submit" value="Add Comment" class="btn btn-primary align-items-stretch mb-3" />
-            <textarea asp-for="Text" class="form-control" rows="2" style="resize: both; max-width: stretch"></textarea>
-            <span asp-validation-for="Text" class="text-danger"></span>
-        </form>
+
+<!-- Add Comment Trigger Button-->
+<button data-btn-create type="button" data-toggle="modal" data-target="#commentModal">
+    Add Comment:
+</button>
+
+<!-- Comment Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div data-dark-mode class="modal-content">
+            <form asp-controller="Comments" asp-action="Create" asp-fragment="@Model.Tool.ToolId">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Comment:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Tool" asp-/>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                    <textarea asp-for="Text" class="form-control" rows="2" style="resize: both; max-width: stretch" id="commentTextArea"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Submit" class="btn btn-primary float-right" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

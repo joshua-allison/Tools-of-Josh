@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,16 +14,20 @@ namespace TheDigitalToolbox.Controllers.Domain
     public class CommentsController : Controller
     {
         private readonly ToolboxContext _context;
+        private IHttpContextAccessor _accessor { get; set; }
 
-        public CommentsController(ToolboxContext context)
+        public CommentsController(ToolboxContext context, IHttpContextAccessor accessor)
         {
             _context = context;
+            _accessor = accessor;
         }
 
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Comments.ToListAsync());
+            ViewBag.Users = await _context.Users.ToListAsync();
+            var comments = await _context.Comments.ToListAsync();
+            return View(comments);
         }
 
         // GET: Comments/Details/5
@@ -33,6 +39,7 @@ namespace TheDigitalToolbox.Controllers.Domain
             }
 
             var comment = await _context.Comments
+                .Include(m => m.Commenter)
                 .FirstOrDefaultAsync(m => m.CommentId == id);
             if (comment == null)
             {
@@ -53,10 +60,18 @@ namespace TheDigitalToolbox.Controllers.Domain
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentId,Date,Text")] Comment comment)
+        public async Task<IActionResult> Create([Bind("CommentId,Date,Text,Commenter,Tool")] Comment comment)
         {
             if (ModelState.IsValid)
             {
+                //Hindsight 20/20: I should have used a view component. I don't know how they work, and I don't have time to figure it out, but the problem I'm running into is that the data of the tool is lost as soon as the partial view is entered, so there's no way to save the tool ID to the comment, because all of that info has been isolated.
+
+
+                // Get the current logged-in user (the one creating the tool), and assign them to the tool.
+                comment.Commenter = await _context.Users.FindAsync(_accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                comment.Date = DateTime.Now;
+
+
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
