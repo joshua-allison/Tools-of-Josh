@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,67 +9,62 @@ using TheDigitalToolbox.Models;
 
 namespace TheDigitalToolbox.Controllers
 {
-    public class TEMP_EmbeddedsController : Controller
+    public class ProgramsController : Controller
     {
         private readonly ToolboxContext _context;
-        private IHttpContextAccessor accessor { get; set; }
-        private ITheDigitalToolBoxDBUnitOfWork data { get; set; }
-        public TEMP_EmbeddedsController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork rep, IHttpContextAccessor http)
+
+        public ProgramsController(ToolboxContext context)
         {
             _context = context;
-            data = rep;
-            accessor = http;
         }
 
-        // GET: Embeds
+        // GET: Programs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Embeds.ToListAsync());
+            return View(await _context.Programs.ToListAsync());
         }
 
-        // GET: Embeds/Details/5
+        // GET: Programs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var embedded = await _context.Embeds
-                .Include(m => m.User)
-                .Include(m => m.Comments)
-                .ThenInclude(comment => comment.Commenter)
+
+            var program = await _context.Programs
                 .FirstOrDefaultAsync(m => m.ToolId == id);
-            if (embedded == null)
+            if (program == null)
             {
                 return NotFound();
             }
 
-            return View(embedded);
+            return View(program);
         }
 
-        // GET: Embeds/Create
+        // GET: Programs/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Embeds/Create
+        // POST: Programs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
+        public async Task<IActionResult> Create([Bind("Language,ToolId,Creator,ShareURL,Title,Description")] Program program)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(embedded);
+                _context.Add(program);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(embedded);
+            return View(program);
         }
 
-        // GET: Embeds/Edit/5
+        // GET: Programs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,22 +72,22 @@ namespace TheDigitalToolbox.Controllers
                 return NotFound();
             }
 
-            var embedded = await _context.Embeds.FindAsync(id);
-            if (embedded == null)
+            var program = await _context.Programs.FindAsync(id);
+            if (program == null)
             {
                 return NotFound();
             }
-            return View(embedded);
+            return View(program);
         }
 
-        // POST: Embeds/Edit/5
+        // POST: Programs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ToolId,EmbedString,Creator,Title,Description,ShareURL")] Embed embedded)
+        public async Task<IActionResult> Edit(int id, [Bind("Language,ToolId,Creator,ShareURL,Title,Description")] Models.Program program)
         {
-            if (id != embedded.ToolId)
+            if (id != program.ToolId)
             {
                 return NotFound();
             }
@@ -102,12 +96,12 @@ namespace TheDigitalToolbox.Controllers
             {
                 try
                 {
-                    _context.Update(embedded);
+                    _context.Update(program);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmbeddedExists(embedded.ToolId))
+                    if (!ProgramExists(program.ToolId))
                     {
                         return NotFound();
                     }
@@ -118,10 +112,10 @@ namespace TheDigitalToolbox.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(embedded);
+            return View(program);
         }
 
-        // GET: Embeds/Delete/5
+        // GET: Programs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,30 +123,30 @@ namespace TheDigitalToolbox.Controllers
                 return NotFound();
             }
 
-            var embedded = await _context.Embeds
+            var program = await _context.Programs
                 .FirstOrDefaultAsync(m => m.ToolId == id);
-            if (embedded == null)
+            if (program == null)
             {
                 return NotFound();
             }
 
-            return View(embedded);
+            return View(program);
         }
 
-        // POST: Embeds/Delete/5
+        // POST: Programs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var embedded = await _context.Embeds.FindAsync(id);
-            _context.Embeds.Remove(embedded);
+            var program = await _context.Programs.FindAsync(id);
+            _context.Programs.Remove(program);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmbeddedExists(int id)
+        private bool ProgramExists(int id)
         {
-            return _context.Embeds.Any(e => e.ToolId == id);
+            return _context.Programs.Any(e => e.ToolId == id);
         }
     }
 }
