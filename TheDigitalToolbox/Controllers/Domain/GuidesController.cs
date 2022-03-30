@@ -12,16 +12,19 @@ namespace TheDigitalToolbox.Controllers
     public class GuidesController : Controller
     {
         private readonly ToolboxContext _context;
+        private readonly ITheDigitalToolBoxDBUnitOfWork _data;
 
-        public GuidesController(ToolboxContext context)
+        public GuidesController(ToolboxContext context, ITheDigitalToolBoxDBUnitOfWork data)
         {
             _context = context;
+            _data = data;
         }
 
         // GET: Guides
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Guides.ToListAsync());
+            var guides = await _data.Guides.ListAsync(new QueryOptions<Guide> { OrderBy = g => g.Title});
+            return View(guides);
         }
 
         // GET: Guides/Details/5

@@ -14,12 +14,10 @@ namespace TheDigitalToolbox.Controllers.Domain
     {
         private readonly ToolboxContext _context;
         private IHttpContextAccessor _accessor { get; set; }
-        private ITheDigitalToolBoxDBUnitOfWork _data { get; set; }
-        public EmbedsController(ToolboxContext context, IHttpContextAccessor accessor, ITheDigitalToolBoxDBUnitOfWork data)
+        public EmbedsController(ToolboxContext context, IHttpContextAccessor accessor)
         {
             _context = context;
             _accessor = accessor;
-            _data = data;
         }
 
         // GET: Embeds
